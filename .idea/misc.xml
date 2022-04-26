@@ -5,9 +5,12 @@
       <map>
         <entry key="..\:/Assignment2/app/src/main/res/layout/activity_main.xml" value="0.4466666666666667" />
         <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/layout/activity_main.xml" value="0.371875" />
+        <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/layout/activity_task.xml" value="0.371875" />
         <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/layout/fragment_calendar.xml" value="0.371875" />
+        <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/layout/fragment_task.xml" value="0.371875" />
         <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/layout/fragment_timer.xml" value="0.371875" />
         <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/layout/fragment_todo.xml" value="0.371875" />
+        <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/layout/item_task.xml" value="0.371875" />
         <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/menu/item_nav.xml" value="0.371875" />
       </map>
     </option>

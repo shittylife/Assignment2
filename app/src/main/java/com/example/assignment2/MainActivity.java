@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         layout = findViewById(R.id.fragment);
         BottomNavigationView navigationView = findViewById(R.id.navigationBar);
         navigationView.setOnItemSelectedListener(this);
+        getSupportFragmentManager().beginTransaction().replace(layout.getId(), taskFragment).commit();
     }
 
     @Override
