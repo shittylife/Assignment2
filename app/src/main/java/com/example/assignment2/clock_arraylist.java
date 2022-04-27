@@ -67,7 +67,7 @@ public class clock_arraylist extends ArrayAdapter<String> {
                     Log.e("tag","12 "+ i);
                     editor.putString(data, temp3);
                     editor.commit();
-                Log.e("tag","13 "+ sharedpreferences.getString(data , ""));
+
 
                 season.remove(position);
                 clock_arraylist.this.notifyDataSetChanged();//update immediately
