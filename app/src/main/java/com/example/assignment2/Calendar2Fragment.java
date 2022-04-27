@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -58,6 +59,7 @@ public class Calendar2Fragment extends Fragment {
     public static final String MYPreference = "MYPref";
     public static final String Name = "nameKey";
     public static final String Email = "emailKey";
+    CalendarFragment calendarFragment = new CalendarFragment();
 
     public Calendar2Fragment() {
         // Required empty public constructor
@@ -108,7 +110,7 @@ public class Calendar2Fragment extends Fragment {
 
 
 
-
+        sharedpreferences = getActivity().getSharedPreferences("abc", Context.MODE_PRIVATE);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.Type, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         sp1.setAdapter(adapter);
@@ -119,10 +121,10 @@ public class Calendar2Fragment extends Fragment {
                 String choice = adapterView.getItemAtPosition(i).toString();
                 Toast.makeText(getActivity(),choice,Toast.LENGTH_SHORT).show();
 
-                if(choice == "Custom"){
+                //if(choice == "Custom"){
                     et2.setVisibility(View.VISIBLE);
 
-                }
+               // }
 
             }
 
@@ -137,11 +139,14 @@ public class Calendar2Fragment extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 if(tvtest == null && sp1== null){
                     Toast.makeText(getActivity(),"Please fill in the Date and Theme.",Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                    startActivity(intent);
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment,calendarFragment );
+                    transaction.commit();
                     Toast.makeText(getActivity(), "Saved",Toast.LENGTH_SHORT).show();
 
                 }
@@ -186,6 +191,25 @@ public class Calendar2Fragment extends Fragment {
             }
         });
         tvtest.setText(date);
+
+
+
+        String s1 = sharedpreferences.getString(MYPreference , "");
+        String s2[] = s1.split("/");
+
+        if(s1 != "") {
+            s2 = s1.split("/");
+
+            for (int i=0; i<s2.length ; i++){
+                String[] clockRecord = s2[i].split(",");
+                data.add(clockRecord[0]);
+            }
+        }else {
+            SharedPreferences.Editor editor = sharedpreferences.edit();//edit
+            editor.putString(Name, "date,25,5,15");
+            editor.commit();
+        }
+
 
         return view;
     }
@@ -270,27 +294,9 @@ public class Calendar2Fragment extends Fragment {
         datePickerDialog.show();
     }
 
-    private void update() {
-        JSONArray array = new JSONArray();
-        for (int i = 0; i < data.size(); i++) {
-            if (!data.get(i).getTitle().isEmpty()&&!data.get(i).getText().isEmpty()) {
-                JSONObject object = new JSONObject();
-                try {
-                    object.put("date", data.get(i).getId());
-                    object.put("theme", data.get(i).getTitle());
-                    object.put("detail", data.get(i).getText());
-                    object.put("Price", data.get(i).getDay());
-                    object.put("Type", data.get(i).getText());
-                    //object.put("title", data.get(i).getTitle());
-                    //.put("text", data.get(i).getText());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                array.put(object);
-            }
-        }
-        PreferenceManager.getDefaultSharedPreferences(getContext()).edit().putString("C", array.toString()).apply();
-    }
+
 
 
 }
+
+

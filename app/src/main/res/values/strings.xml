@@ -26,6 +26,13 @@
     <string name="btn4">Save</string>
     <string name="btn5">select</string>
 
+    <string name="t1">Date:</string>
+    <string name="t2">Type:</string>
+    <string name="t3">Price:</string>
+    <string name="t4">Comment:</string>
+
+
+
     <string-array name="Type">
         <item>Food</item>
         <item>Travel</item>

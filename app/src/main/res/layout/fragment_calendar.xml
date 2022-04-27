@@ -124,11 +124,9 @@
         android:layout_height="4dp"
         android:background="@color/black"/>
 
-    <TextView
-        android:id="@+id/textView9"
+    <ListView
+        android:id="@+id/lv1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:visibility="invisible" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>
