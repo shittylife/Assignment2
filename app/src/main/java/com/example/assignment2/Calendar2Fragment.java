@@ -46,19 +46,20 @@ public class Calendar2Fragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private String mParam1;
-    private String mParam2;
+    private String a;
+    String sppick;
     private DatePickerDialog datePickerDialog;
     private Button dateButton,save,pick;
     private Spinner sp1;
     private String date,dateDay,dateMonth;
     private TextView tvtest;
     private DatePicker datePicker;
-    private EditText detail,et2;
-    private List<Task> data = new ArrayList<>();
+    private EditText detail,et2,et3;
+    ArrayList<String> data = new ArrayList<>();
     SharedPreferences sharedpreferences;
     public static final String MYPreference = "MYPref";
     public static final String Name = "nameKey";
-    public static final String Email = "emailKey";
+
     CalendarFragment calendarFragment = new CalendarFragment();
 
     public Calendar2Fragment() {
@@ -88,7 +89,7 @@ public class Calendar2Fragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
@@ -107,7 +108,7 @@ public class Calendar2Fragment extends Fragment {
         datePicker = view.findViewById(R.id.DatePicker);
         dateButton.setText(getTodaysDate());
         DatePicker picker = view.findViewById(R.id.DatePicker);
-
+        int i;
 
 
         sharedpreferences = getActivity().getSharedPreferences("abc", Context.MODE_PRIVATE);
@@ -119,6 +120,7 @@ public class Calendar2Fragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 String choice = adapterView.getItemAtPosition(i).toString();
+                choice = sppick;
                 Toast.makeText(getActivity(),choice,Toast.LENGTH_SHORT).show();
 
                 //if(choice == "Custom"){
@@ -144,10 +146,31 @@ public class Calendar2Fragment extends Fragment {
                 if(tvtest == null && sp1== null){
                     Toast.makeText(getActivity(),"Please fill in the Date and Theme.",Toast.LENGTH_SHORT).show();
                 }else {
+                    SharedPreferences.Editor editor = sharedpreferences.edit();//edit
+                    String s1 = sharedpreferences.getString(MYPreference , "");
+
+                    String gg = et3.getContext().toString();
+                    String cc = detail.getContext().toString();
+
+                if(s1 == null) {
+                    s1 = s1 + date;
+                    s1 = s1 + "," + sppick;
+                    s1 = s1 + "," + gg;
+                    s1 = s1 + "," + cc ;
+
+                }else{
+                    s1 = s1 +"/"+ date;
+                    s1 = s1 + "," + sppick;
+                    s1 = s1 + "," + gg;
+                    s1 = s1 + "," + cc ;}
+
+                    editor.putString(Name, s1);
+                    editor.commit();
+                    Toast.makeText(getActivity(), "Saved",Toast.LENGTH_SHORT).show();
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
                     transaction.replace(R.id.fragment,calendarFragment );
                     transaction.commit();
-                    Toast.makeText(getActivity(), "Saved",Toast.LENGTH_SHORT).show();
+
 
                 }
             }
@@ -194,21 +217,6 @@ public class Calendar2Fragment extends Fragment {
 
 
 
-        String s1 = sharedpreferences.getString(MYPreference , "");
-        String s2[] = s1.split("/");
-
-        if(s1 != "") {
-            s2 = s1.split("/");
-
-            for (int i=0; i<s2.length ; i++){
-                String[] clockRecord = s2[i].split(",");
-                data.add(clockRecord[0]);
-            }
-        }else {
-            SharedPreferences.Editor editor = sharedpreferences.edit();//edit
-            editor.putString(Name, "date,25,5,15");
-            editor.commit();
-        }
 
 
         return view;

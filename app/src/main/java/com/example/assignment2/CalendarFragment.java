@@ -1,5 +1,8 @@
 package com.example.assignment2;
 
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -29,7 +32,10 @@ public class CalendarFragment extends Fragment {
     ImageButton iv2;
     TextView tv5;
     ListView lv1;
-    String s1[] ,s2[],s3[] ,s4[];
+    int u = 0;
+    public static final String MYPreference = "MYPref";
+    SharedPreferences sharedpreferences;
+    String s0[],s1[] ,s2[],s3[] ,s4[];
     Calendar2Fragment calendar2Fragment = new Calendar2Fragment();
 
     @Override
@@ -44,12 +50,37 @@ public class CalendarFragment extends Fragment {
         lv1 = view.findViewById(R.id.lv1);
 
 
+        sharedpreferences = getActivity().getSharedPreferences("abc", Context.MODE_PRIVATE);
+
+        String h = sharedpreferences.getString("nameKey" , "");
+
+        SharedPreferences.Editor editor = sharedpreferences.edit();//edit
+        String s1 = sharedpreferences.getString(MYPreference , "");
 
 
-        ArrayList<String> arr = new ArrayList<String>(Arrays.asList(s1));
-        ArrayList<String> arr1 = new ArrayList<String>(Arrays.asList(s2));
-        ArrayList<String> arr2 = new ArrayList<String>(Arrays.asList(s3));
-        ArrayList<String> arr3 = new ArrayList<String>(Arrays.asList(s4));
+        editor.putString("nameKey", "123,ggg,123,ggg");
+
+
+        s0 = h.split("/");
+        ArrayList<String> arr = new ArrayList<String>();
+        ArrayList<String> arr1 = new ArrayList<String>();
+        ArrayList<String> arr2 = new ArrayList<String>();
+        ArrayList<String> arr3 = new ArrayList<String>();
+
+        for(int i = 0  ; i < s0.length; i++)
+        {
+
+            String d[] = s0[i].split(",");
+            arr.add(d[0]);
+            arr1.add(d[1]);
+            arr2.add(d[2]);
+            arr3.add(d[3]);
+            u += Integer.valueOf(d[2]);
+
+        }
+
+
+
         Calendarlist adapter = new Calendarlist(getActivity(),arr,arr1,arr2,arr3);
 
 
