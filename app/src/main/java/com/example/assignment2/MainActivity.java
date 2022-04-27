@@ -4,17 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,TimerFragment.DataPassListener{
 
     private FrameLayout layout;
     private final TaskFragment taskFragment = new TaskFragment();
     private final CalendarFragment calendarFragment = new CalendarFragment();
     private final TimerFragment timerFragment = new TimerFragment();
+    private final TimerAddFragment timerAddFragment = new TimerAddFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,5 +46,30 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
         return false;
     }
+    /*
+    public void passDatafromFirst2Second(String name, int time, int shortbreak, int longbreak) {
+        Log.d("Louis", "arrived passDatafromFirst2Second");
+        Bundle bundle = new Bundle();
+        // store 'data' passed by 1st Fragment to
+        // SecondFragment.DATA_RECEIVE class variable
+        bundle.putString("key", "FromTimerMenuFragment1");
+        bundle.putString("name", name);
+        bundle.putInt("sid", time);
+        bundle.putInt("gender", shortbreak);
+        bundle.putInt("address", longbreak);
+        // assign bundle to 2nd fragment
+        getSupportFragmentManager().beginTransaction().replace(layout.getId(), TimerRunFragment).commit();
+    }*/
+
+    public void addAlarm() {
+        Log.d("Louis", "arrived addAlarm");
+        Bundle bundle = new Bundle();
+        getSupportFragmentManager().beginTransaction().replace(layout.getId(), timerAddFragment).commit();
+    }
+
+
+
+
+
 }
 
