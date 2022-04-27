@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener,TimerFragment.DataPassListener{
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     private FrameLayout layout;
     private final TaskFragment taskFragment = new TaskFragment();
@@ -61,11 +61,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         getSupportFragmentManager().beginTransaction().replace(layout.getId(), TimerRunFragment).commit();
     }*/
 
-    public void addAlarm() {
-        Log.d("Louis", "arrived addAlarm");
-        Bundle bundle = new Bundle();
-        getSupportFragmentManager().beginTransaction().replace(layout.getId(), timerAddFragment).commit();
-    }
+
 
 
 
