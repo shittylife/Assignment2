@@ -83,7 +83,7 @@
             android:background="@color/design_default_color_on_primary"
             android:ems="10"
             android:hint="@string/hint3"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:minHeight="30dp"
             android:textColorHint="#757575" />
 

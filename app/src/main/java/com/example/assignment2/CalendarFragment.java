@@ -81,6 +81,8 @@ public class CalendarFragment extends Fragment {
                         arr2.add(d[2]);
                         arr3.add(d[3]);
                         u += Integer.valueOf(d[2]);
+                        update();
+
                     }
 
 
@@ -96,7 +98,7 @@ public class CalendarFragment extends Fragment {
                         arr2.add(d[2]);
                         arr3.add(d[3]);
                         u += Integer.valueOf(d[2]);
-
+                        update();
 
 
                 }
@@ -131,4 +133,10 @@ public class CalendarFragment extends Fragment {
 
             return view;
         }
+
+    private void update() {
+        tv5.setText(u);
+
     }
+
+}
