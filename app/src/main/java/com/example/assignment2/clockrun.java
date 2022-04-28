@@ -82,20 +82,27 @@ public class clockrun extends Fragment {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 cdt = new CountDownTimer(a,1000) {
+
                     @Override
                     public void onTick(long l) {
+
                         a= l;
                         Log.d("yo", "fuck");
-                        tv2.setText("seconds remaining: " + a / 1000);
+                        a3();
 
                     }
 
                     @Override
                     public void onFinish() {
                         Log.d("yo", "on 9");
+                        mp3.start();
+                        a1();
                     }
+
                 };
+                cdt.start();
             }
         });
 
@@ -113,14 +120,14 @@ public class clockrun extends Fragment {
         return view;
     }
 
-    /*public void a1(){
+    public void a1(){
         if(i<3){
             try {
-                countDownTimer.wait(c);
+                cdt.wait(c);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            countDownTimer.start();
+            cdt.start();
             i=i+1;
             tv3.setText("you already done:"+i+"time");
         }else {
@@ -129,7 +136,7 @@ public class clockrun extends Fragment {
         }
     }
     public void a2(){
-        countDownTimer2 = new CountDownTimer(b, 1000) {
+        cdt2 = new CountDownTimer(b, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 b=millisUntilFinished;
@@ -142,7 +149,7 @@ public class clockrun extends Fragment {
                 tv2.setText("you finished a whole process!!");
             }
         };
-        countDownTimer2.start();
+        cdt2.start();
     }
     private void a3(){
         int min =(int)(a/1000)/60;
@@ -155,6 +162,6 @@ public class clockrun extends Fragment {
         int sec =(int)(b/1000)%60;
         String timeformatted = String.format(Locale.getDefault(),"%02d:%02d",min,sec);
         tv1.setText(timeformatted);
-    }*/
+    }
 
 }
