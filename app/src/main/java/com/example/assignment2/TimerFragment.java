@@ -3,7 +3,6 @@ package com.example.assignment2;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +30,7 @@ public class TimerFragment extends Fragment {
     DataPassListener mCallback;
 
 
-    public  interface  DataPassListener{
+    public  interface  DataPassListener{ //create datapasslistener
         public void pass1(String name, long time1,long time2,long time3);
     }
 
@@ -49,33 +48,26 @@ public class TimerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_timer, container, false);
-        TimerAddFragment timerAddFragment = new TimerAddFragment();
-        clockrun clockrun =new clockrun();
+        TimerAddFragment timerAddFragment = new TimerAddFragment();//create timerAddFragment fragment
 
-        sharedpreferences = getContext().getSharedPreferences(selected, Context.MODE_PRIVATE);
+        sharedpreferences = getContext().getSharedPreferences(selected, Context.MODE_PRIVATE);//create sharedpreferences
 
-
-        s1 = sharedpreferences.getString(data , "");
+        s1 = sharedpreferences.getString(data , "");//get the sharedpreferences
         lv = view.findViewById(R.id.lv1);
         String[] s2;
 
-        ArrayList<String> clockname = new ArrayList<>();
+        ArrayList<String> clockname = new ArrayList<>();//create arraylistw
         ArrayList<String> time1 = new ArrayList<>();
         ArrayList<String> time2 = new ArrayList<>();
         ArrayList<String> time3 = new ArrayList<>();
 
+        if(s1 != "") {//check if the sharedpreferences is null
+            if(s1.contains(";")){//check the sharedpreferences data whether more than 1
 
-        Log.e("tag","1"+ s1);
-        Log.e("tag","2"+ sharedpreferences.getString(data , ""));
+                s2 = s1.split(";");//split the data
 
-        if(s1 != "") {
-            if(s1.contains(";")){
-
-                s2 = s1.split(";");
-
-                for (int i=0; i<s2.length ; i++){
+                for (int i=0; i<s2.length ; i++){//use a loop to  add the data to arraylist
                 String[] clockRecord = s2[i].split(",");
-                Log.e("tag",String.valueOf(clockRecord.length));
                 clockname.add(clockRecord[0]);
                 time1.add(clockRecord[1]);
                 time2.add(clockRecord[2]);
@@ -84,13 +76,12 @@ public class TimerFragment extends Fragment {
             }else {
 
                     String[] clockRecord = s1.split(",");
-                    Log.e("tag",String.valueOf(clockRecord.length));
-                    clockname.add(clockRecord[0]);
+                    clockname.add(clockRecord[0]);//add the data to arraylist
                     time1.add(clockRecord[1]);
                     time2.add(clockRecord[2]);
                     time3.add(clockRecord[3]);
             }
-        } else{
+        } else{//create a default clock
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putString(data, "Tomato,25,5,15");
             editor.commit();
@@ -104,7 +95,6 @@ public class TimerFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selected_pos = position;
-                Log.d("tag", String.valueOf(position));
                 String name = clockname.get(position);
                 long a , b  , c ;
                 a = Long.valueOf(time1.get(position));
@@ -113,8 +103,7 @@ public class TimerFragment extends Fragment {
                 a = a *1000 * 60;
                 b = b *1000 * 60;
                 c = c *1000 * 60;
-                Log.d("tag name a b c",name + " " + a + " " + b + " " + c );
-                mCallback.pass1(name,a,b,c);
+                mCallback.pass1(name,a,b,c);//transfer the data to clockrun fragment
 
 
             }
@@ -127,17 +116,16 @@ public class TimerFragment extends Fragment {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();//transfer ot timeAddFragment
                 transaction.replace(R.id.fragment, timerAddFragment);
                 transaction.commit();
             }
         });
 
         btn_addDefault = view.findViewById(R.id.default_button);
-        btn_addDefault.setOnClickListener(new View.OnClickListener() {
+        btn_addDefault.setOnClickListener(new View.OnClickListener() {//add the default tomato clock
             @Override
             public void onClick(View view) {
-                Log.e("tag","3 "+ sharedpreferences.getString(data , ""));
                 String temp = sharedpreferences.getString(data , "");
                 clockname.add("Tomato");
                 time1.add("25");
@@ -156,7 +144,6 @@ public class TimerFragment extends Fragment {
                     editor.putString(data, temp3);
                     editor.commit();
 
-                    Log.e("tag","4 "+ sharedpreferences.getString(data , ""));
 
                 }else{
                     SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -168,10 +155,10 @@ public class TimerFragment extends Fragment {
         });
         timertv1 = view.findViewById(R.id.timertv1);
         btn_clock_instruction = view.findViewById(R.id.btn_clock_instruction);
-        btn_clock_instruction.setOnClickListener(new View.OnClickListener() {
+        btn_clock_instruction.setOnClickListener(new View.OnClickListener() {//let the instruction show or hide
             @Override
             public void onClick(View view) {
-                timertv1.setText("Run the clock: \nstep1: Pick a task.\nstep2: work on your task .\nstep3: Take a break\nstep4: Every 4 period,take a longer break.Then, the clock is done.\n\n(ps:\n1. If you delete all the task and quit the app , it will create a default clock automatically\n2. If you are on break time, the clock do not show you the time.");
+                timertv1.setText("Run the clock: \nstep1: Pick a task.\nstep2: work on your task .\nstep3: Take a break\nstep4: Every 4 period,take a longer break.Then, the clock is done.\n\n(ps:\n1. If you delete all the task and quit the app , it will create a default clock automatically\n2. If you are on break time, the clock do not show you the time.\n3. the default clock is 25 min for work period,5 min for short break and 15 min for long break.");
 
                 if(timertv1.getVisibility() == View.GONE){
                     timertv1.setVisibility(View.VISIBLE);

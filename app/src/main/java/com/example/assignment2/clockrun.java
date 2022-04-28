@@ -28,10 +28,10 @@ public class clockrun extends Fragment {
     MediaPlayer mp3;
     CountDownTimer cdt, cdt2;
     String name = "";
-    long a = 6000;
-    long b = 3000;
-    long c = 3000;
-    long d=0;
+    long a = 0;
+    long b = 0;
+    long c = 0;
+    long d = 0;
     boolean checker,checker2;
 
     public clockrun() {
@@ -70,9 +70,8 @@ public class clockrun extends Fragment {
         btn3=view.findViewById(R.id.button_return);
 
         Bundle x = getArguments();
-        Log.d("x", String.valueOf(x));
         if (x != null) {
-            if (x.getString("key").equalsIgnoreCase("FromTimerFragment")) {
+            if (x.getString("key").equalsIgnoreCase("FromTimerFragment")) {//get the data from bundle
                     name =x.getString("name");
                     a = x.getLong("time1");
                     b = x.getLong("time2");
@@ -86,13 +85,13 @@ public class clockrun extends Fragment {
             public void onClick(View view) {
                 tv3.setText("you are on 1 work period\nThen you can rest: "+(c/1000/60)+" minute");
 
-                cdt = new CountDownTimer(a,1000) {
+                cdt = new CountDownTimer(a,1000) {//start run the clock
 
                     @Override
                     public void onTick(long l) {
                         a= l;
                         checker=true;
-                        a3();
+                        a3();//allow the textview show the clock
                         btn2.setVisibility(view.VISIBLE);
                         btn1.setVisibility(view.GONE);
                         btn3.setVisibility(view.GONE);
@@ -102,7 +101,7 @@ public class clockrun extends Fragment {
                     @Override
                     public void onFinish() {
                         checker=false;
-                        mp3.start();
+                        mp3.start();//play the alarm to tell the user work period is done
                         a1(view);
                     }
 
@@ -111,7 +110,7 @@ public class clockrun extends Fragment {
             }
         });
 
-      btn2.setOnClickListener(new View.OnClickListener() {
+      btn2.setOnClickListener(new View.OnClickListener() {//stop the clock
            @Override
            public void onClick(View view) {
                cdt.cancel();
@@ -123,7 +122,7 @@ public class clockrun extends Fragment {
                btn2.setVisibility(view.GONE);
            }
        });
-      btn3.setOnClickListener(new View.OnClickListener() {
+      btn3.setOnClickListener(new View.OnClickListener() {//return to the menu
           @Override
           public void onClick(View view) {
               a=d;
@@ -142,21 +141,21 @@ public class clockrun extends Fragment {
     public void a1(View view){
         if(i<3){
             try {
-                cdt.wait(c);
+                cdt.wait(c);//wait for break
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            cdt.start();
-            a5();
+            cdt.start();//work period again
+            a5();//allow the textview show the time
             i=i+1;
             tv3.setText("you are on "+(i)+" work period\nThen you can rest: "+(c/1000/60)+" minute");
 
         }else {
             tv3.setText("now take a "+(b/1000/60)+"-minute break");
-            a2();
+            a2();//start the long break
         }
     }
-    public void a2(){
+    public void a2(){//the long break clock
         cdt2 = new CountDownTimer(b, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -166,7 +165,7 @@ public class clockrun extends Fragment {
             }
 
             @Override
-            public void onFinish() {
+            public void onFinish() {//finish the cycle
                 checker2=false;
                 tv3.setText("you finished a whole process!!");
             }

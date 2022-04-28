@@ -3,7 +3,6 @@ package com.example.assignment2;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,27 +66,26 @@ public class TimerAddFragment extends Fragment {
 
                 if(name.length() != 0 && workPeriod.length() != 0 && shortbreak.length() != 0 && longbreak.length() != 0 && !name.contains(";")  && !name.contains(",") ){
                     //check the input whether valid
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    SharedPreferences.Editor editor = sharedpreferences.edit(); //create the editor
 
                     for (int i = 0 ; i < temp2.length ;i++){
-                        if (i==0) temp3 = temp3 + temp2[i];
-                        if (i!=0) temp3 = temp3 +";" + temp2[i];}
+                        if (i==0) temp3 = temp3 + temp2[i];// add the begin data
+                        if (i!=0) temp3 = temp3 +";" + temp2[i];}//add the further data
 
                     if (temp3 == ""){
-                        temp3 = temp3 + name + "," + workPeriod + "," +shortbreak +","+longbreak;
+                        temp3 = temp3 + name + "," + workPeriod + "," +shortbreak +","+longbreak; //if the sharedpreferences is empty
                     }
                     else{
-                        temp3 = temp3 + ";" + name + "," + workPeriod + "," +shortbreak +","+longbreak ;
+                        temp3 = temp3 + ";" + name + "," + workPeriod + "," +shortbreak +","+longbreak ; // if the sharedpreferences is not empty
                     }
                     editor.putString(data, temp3);
-                    editor.commit();
-                    Log.e("tag","add: "+ sharedpreferences.getString(data , ""));
+                    editor.commit(); // commit the data to sharedpreferences
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
                     transaction.replace(R.id.fragment, timerFragment);
-                    transaction.commit();
+                    transaction.commit();//change the fragment
 
                 }else{
-                    Toast.makeText(getContext(), "Please input valid information and do not left the column empty.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Please input valid information and do not left the column empty.", Toast.LENGTH_SHORT).show();//warning the user
                 }
 
 
@@ -96,7 +94,7 @@ public class TimerAddFragment extends Fragment {
 
     btn_return = view.findViewById(R.id.return_btn);
 
-    btn_return.setOnClickListener(new View.OnClickListener() {
+    btn_return.setOnClickListener(new View.OnClickListener() { //return to menu
         @Override
         public void onClick(View view) {
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -106,7 +104,7 @@ public class TimerAddFragment extends Fragment {
     });
 
         tv = view.findViewById(R.id.timeraddtv1);
-        intro = view.findViewById(R.id.btn_add_clock_instruction);
+        intro = view.findViewById(R.id.btn_add_clock_instruction);//introduction
         intro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
