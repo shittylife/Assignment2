@@ -27,7 +27,7 @@ public class clockrun extends Fragment {
     MediaPlayer mp3;
     CountDownTimer countDownTimer,countDownTimer2;
     String name = "";
-    long a = 0;
+    long a = 60000;
     long b = 0;
     long c = 0;
 
@@ -86,7 +86,7 @@ public class clockrun extends Fragment {
           countDownTimer = new CountDownTimer(a,1000) {
               @Override
               public void onTick(long millisUntilFinished) {
-                 a= millisUntilFinished;
+                  a= millisUntilFinished;
                   stopTimer_btn.setVisibility(view.VISIBLE);
                   startTimer_btn.setVisibility(view.GONE);
                  a3();
