@@ -79,7 +79,6 @@ public class clockrun extends Fragment {
                     b = x.getLong("time2");
                     c = x.getLong("time3");
                     tv3.setText("clock name: "+ name );
-                Log.d("tag name a b c", name+" "+ a + " " + b + " " + c );
             }
         }
 
@@ -149,10 +148,10 @@ public class clockrun extends Fragment {
             }
             cdt.start();
             i=i+1;
-            tv3.setText("you already done:"+i+"time");
+            tv3.setText("you already done:"+i+"time\n now you can rest:"+(c/1000/60)+"minute");
         }else {
             a2();
-            tv2.setText("now take a 15-minute break");
+            tv2.setText("now take a "+(b/1000/60)+"-minute break");
         }
     }
     public void a2(){
