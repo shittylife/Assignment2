@@ -75,7 +75,7 @@ public class clockrun extends Fragment {
                     a = x.getLong("time1");
                     b = x.getLong("time2");
                     c = x.getLong("time3");
-                    tv3.setText(name);
+                    tv3.setText("clock name: "+ name );
                 Log.d("tag name a b c", name+" "+ a + " " + b + " " + c );
             }
         }
