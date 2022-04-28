@@ -62,10 +62,11 @@ public class clockrun extends Fragment {
         Log.d("x", String.valueOf(x));
         if (x != null) {
             if (x.getString("key").equalsIgnoreCase("FromTimerFragment")) {
+                String name = x.getString("name");
                     a = x.getLong("time1");
                     b = x.getLong("time2");
                     c = x.getLong("time3");
-                Log.d("tag name a b c", a + " " + b + " " + c );
+                Log.d("tag name a b c", name+" "+ a + " " + b + " " + c );
             }
         }
        tv1=view.findViewById(R.id.text_view_countdown);
