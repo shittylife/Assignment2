@@ -51,6 +51,7 @@ public class TimerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_timer, container, false);
         TimerAddFragment timerAddFragment = new TimerAddFragment();
+        clockrun clockrun =new clockrun();
 
         sharedpreferences = getContext().getSharedPreferences(selected, Context.MODE_PRIVATE);
 
@@ -101,6 +102,12 @@ public class TimerFragment extends Fragment {
                 b = Long.valueOf(time2.get(position));
                 c = Long.valueOf(time3.get(position));
                 mCallback.pass1(name,a,b,c);
+                int i = position;
+               if(i ==position){
+                   FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                   transaction.replace(R.id.fragment, clockrun);
+                   transaction.commit();
+               }
             }
 
         });
