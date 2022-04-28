@@ -135,7 +135,8 @@ public class CalendarFragment extends Fragment {
         }
 
     private void update() {
-        tv5.setText(u);
+        String t = String.valueOf(u);
+        tv5.setText(t);
 
     }
 
