@@ -49,7 +49,7 @@ public class CalendarFragment extends Fragment {
         Calendar2Fragment calendar2Fragment = new Calendar2Fragment();
         iv2 = view.findViewById(R.id.iv2);
         lv1 = view.findViewById(R.id.lv1);
-        test11 = view.findViewById(R.id.test11);
+
 
         sharedpreferences = getActivity().getSharedPreferences("abc", Context.MODE_PRIVATE);
        // SharedPreferences.Editor editor = sharedpreferences.edit();//edit
