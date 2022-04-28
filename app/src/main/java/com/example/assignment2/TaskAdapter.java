@@ -22,6 +22,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     public interface OnClickListener {
         void onDeleteClick(long i);
         void onItemClick(long i);
+        void onItemUpdate(int i);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -91,5 +92,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
                 notifyItemInserted(i);
             }
         }
+        if (onClickListener != null)
+            onClickListener.onItemUpdate(sublist.size());
     }
 }

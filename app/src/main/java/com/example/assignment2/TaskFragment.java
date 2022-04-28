@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +30,7 @@ public class TaskFragment extends Fragment implements DatePicker.OnDateChangedLi
     private List<Task> data = new ArrayList<>();
     private TaskAdapter taskAdapter;
     private Button addButton, todayButton;
+    private TextView tv1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,7 @@ public class TaskFragment extends Fragment implements DatePicker.OnDateChangedLi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_task, container, false);
+        tv1 = view.findViewById(R.id.tv1);
         datePicker = view.findViewById(R.id.datePicker);
         datePicker.setOnDateChangedListener(this);
         taskAdapter = new TaskAdapter(data);
@@ -97,6 +101,15 @@ public class TaskFragment extends Fragment implements DatePicker.OnDateChangedLi
                 break;
             }
         }
+    }
+
+    @Override
+    public void onItemUpdate(int i) {
+        if (tv1 != null)
+            if (i > 0)
+                tv1.setVisibility(View.GONE);
+            else
+                tv1.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -154,5 +167,6 @@ public class TaskFragment extends Fragment implements DatePicker.OnDateChangedLi
             }
         }
         PreferenceManager.getDefaultSharedPreferences(getContext()).edit().putString("todolist", array.toString()).apply();
+        Toast.makeText(getContext(), "Updated", Toast.LENGTH_SHORT).show();
     }
 }
