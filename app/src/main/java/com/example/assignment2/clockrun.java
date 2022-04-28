@@ -23,13 +23,13 @@ public class clockrun extends Fragment {
     private String mParam2;
     int i=0;
     TextView tv1,tv2,tv3;
-    Button startTimer_btn,stopTimer_btn,return_btn;
+    Button btn1,btn2,btn3;
     MediaPlayer mp3;
-    CountDownTimer countDownTimer,countDownTimer2;
+    CountDownTimer cdt, cdt2;
     String name = "";
-    long a = 60000;
-    long b = 0;
-    long c = 0;
+    long a = 6000;
+    long b = 3000;
+    long c = 3000;
 
     public clockrun() {
         // Required empty public constructor
@@ -62,10 +62,9 @@ public class clockrun extends Fragment {
         tv2=view.findViewById(R.id.clockruntv2);
         tv3=view.findViewById(R.id.clockruntv3);
         mp3 = MediaPlayer.create(getActivity(),R.raw.clock);
-        startTimer_btn = view.findViewById(R.id.button_start);
-        stopTimer_btn=view.findViewById(R.id.button_pause);
-        return_btn = view.findViewById(R.id.button_return);
-
+        btn1=view.findViewById(R.id.button_start);
+        btn2=view.findViewById(R.id.button_pause);
+        btn3=view.findViewById(R.id.button_return);
 
         Bundle x = getArguments();
         Log.d("x", String.valueOf(x));
@@ -80,32 +79,32 @@ public class clockrun extends Fragment {
             }
         }
 
-       startTimer_btn.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-          countDownTimer = new CountDownTimer(a,1000) {
-              @Override
-              public void onTick(long millisUntilFinished) {
-                  a= millisUntilFinished;
-                  stopTimer_btn.setVisibility(view.VISIBLE);
-                  startTimer_btn.setVisibility(view.GONE);
-                 a3();
-              }
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cdt = new CountDownTimer(a,1000) {
+                    @Override
+                    public void onTick(long l) {
+                        a= l;
+                        Log.d("yo", "fuck");
+                        tv2.setText("seconds remaining: " + a / 1000);
 
-              @Override
-              public void onFinish() {
-                  mp3.start();
-                  a1();
-              }
-          };
-           }
-       });
-       stopTimer_btn.setOnClickListener(new View.OnClickListener() {
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        Log.d("yo", "on 9");
+                    }
+                };
+            }
+        });
+
+      btn2.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               countDownTimer.cancel();
-               countDownTimer2.cancel();
-               startTimer_btn.setVisibility(view.VISIBLE);
+               cdt.cancel();
+              cdt2.cancel();
+               btn1.setVisibility(view.VISIBLE);
            }
        });
 
@@ -114,7 +113,7 @@ public class clockrun extends Fragment {
         return view;
     }
 
-    public void a1(){
+    /*public void a1(){
         if(i<3){
             try {
                 countDownTimer.wait(c);
@@ -156,6 +155,6 @@ public class clockrun extends Fragment {
         int sec =(int)(b/1000)%60;
         String timeformatted = String.format(Locale.getDefault(),"%02d:%02d",min,sec);
         tv1.setText(timeformatted);
-    }
+    }*/
 
 }

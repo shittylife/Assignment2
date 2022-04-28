@@ -53,7 +53,6 @@
                 android:id="@+id/button_start"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/text_view_countdown"
                 android:layout_centerHorizontal="true"
                 android:layout_weight="1"
                 android:text="start" />
@@ -74,7 +73,7 @@
                 android:layout_toEndOf="@+id/button_start"
                 android:layout_weight="1"
                 android:text="close"
-                android:visibility="invisible"
+                android:visibility="visible"
                 tools:visibility="visible" />
         </LinearLayout>
 
