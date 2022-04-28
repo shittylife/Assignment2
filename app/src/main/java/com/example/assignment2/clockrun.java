@@ -32,6 +32,7 @@ public class clockrun extends Fragment {
     long b = 3000;
     long c = 3000;
     long d=0;
+    boolean checker,checker2;
 
     public clockrun() {
         // Required empty public constructor
@@ -91,6 +92,7 @@ public class clockrun extends Fragment {
                     @Override
                     public void onTick(long l) {
                         a= l;
+                        checker=true;
                         a3();
                         btn2.setVisibility(view.VISIBLE);
                         btn1.setVisibility(view.GONE);
@@ -100,6 +102,7 @@ public class clockrun extends Fragment {
 
                     @Override
                     public void onFinish() {
+                        checker=false;
                         mp3.start();
                         a1();
                     }
@@ -113,7 +116,9 @@ public class clockrun extends Fragment {
            @Override
            public void onClick(View view) {
                cdt.cancel();
-               cdt2.cancel();
+               if(checker2==true){
+                   cdt2.cancel();
+               }
                btn1.setVisibility(view.VISIBLE);
                btn3.setVisibility(view.VISIBLE);
                btn2.setVisibility(view.GONE);
@@ -155,12 +160,13 @@ public class clockrun extends Fragment {
             @Override
             public void onTick(long millisUntilFinished) {
                 b=millisUntilFinished;
+                checker2=true;
                 a4();
             }
 
             @Override
             public void onFinish() {
-
+                checker2=false;
                 tv2.setText("you finished a whole process!!");
             }
         };
