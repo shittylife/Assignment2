@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -26,7 +25,7 @@ public class TimerFragment extends Fragment {
     public static final String data = "data";
 
     TextView timertv1;
-    ListView lv1;
+    ListView lv;
     Button btn_add , btn_addDefault,btn_clock_instruction;
     Integer selected_pos = -1;
     DataPassListener mCallback;
@@ -57,7 +56,7 @@ public class TimerFragment extends Fragment {
 
 
         s1 = sharedpreferences.getString(data , "");
-        lv1 = view.findViewById(R.id.lv1);
+        lv = view.findViewById(R.id.lv1);
         String[] s2;
 
         ArrayList<String> clockname = new ArrayList<>();
@@ -100,8 +99,8 @@ public class TimerFragment extends Fragment {
 
         clock_arraylist adapter = new clock_arraylist(getActivity(),clockname);
 
-        lv1.setAdapter(adapter);
-        lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selected_pos = position;
@@ -172,7 +171,7 @@ public class TimerFragment extends Fragment {
         btn_clock_instruction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                timertv1.setText("step1: Pick a task\nstep2: work on your task until 25-minute left\n step3: Take a 5-minute break\n step4: Every 4 pomodoros,take a longer 15-minute break\n(ps: if you delete all the task and quit the app , it will create a default automatically");
+                timertv1.setText("Run the clock: \nstep1: Pick a task.\nstep2: work on your task .\nstep3: Take a break\nstep4: Every 4 period,take a longer break.Then, the clock is done.\n\n(ps:\n1. If you delete all the task and quit the app , it will create a default clock automatically\n2. If you are on break time, the clock do not show you the time.");
 
                 if(timertv1.getVisibility() == View.GONE){
                     timertv1.setVisibility(View.VISIBLE);

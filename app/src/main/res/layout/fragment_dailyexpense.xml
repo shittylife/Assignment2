@@ -118,12 +118,22 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/Instruction_dailyexpenses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Instruction show/hide" />
+
     <TextView
         android:id="@+id/tvtest11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/white"
         android:text="@string/t5"
-        android:textColor="#000000" />
+        android:textColor="#000000"
+        android:visibility="gone" />
 
     <View
 

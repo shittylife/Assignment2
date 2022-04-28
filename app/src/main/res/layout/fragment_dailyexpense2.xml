@@ -14,22 +14,13 @@
         android:orientation="vertical"
         android:weightSum="100">
 
-        <TextView
-            android:id="@+id/tv4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/tv4"
-            android:textColor="@color/black"
-            android:textSize="30dp" />
-
         <Button
             android:id="@+id/datePickerButton"
             style="?android:spinnerStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/DATE"
+            android:text="@string/tv4"
             android:textColor="@color/black"
             android:textSize="30dp" />
 
@@ -61,7 +52,9 @@
             android:id="@+id/sp1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone" />
+            android:layout_margin="5dp"
+            android:background="@color/white"
+            android:visibility="visible" />
 
         <EditText
             android:id="@+id/et2"
@@ -73,7 +66,8 @@
             android:hint="@string/hint2"
             android:inputType="textPersonName"
             android:textColorHint="#757575"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:maxLength="20"/>
 
         <EditText
             android:id="@+id/et3"
@@ -98,7 +92,8 @@
             android:inputType="text|textMultiLine|textCapSentences"
             android:lines="2"
             android:minHeight="48dp"
-            android:textColorHint="#757575" />
+            android:textColorHint="#757575"
+            android:maxLength="20"/>
 
         <Button
             android:id="@+id/btn4"
@@ -106,6 +101,13 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:text="@string/btn4" />
+
+        <Button
+            android:id="@+id/DE_rtn_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Return" />
 
     </LinearLayout>
 

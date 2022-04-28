@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -22,8 +23,9 @@ public class TimerAddFragment extends Fragment {
     public static final String data = "data";
 
     EditText nameET, workPeriodET, shortbreakET,longbreakET;
-    Button add,btn_return;
+    Button add,btn_return , intro;
     String name,workPeriod , shortbreak , longbreak;
+    TextView tv;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,9 +36,9 @@ public class TimerAddFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_addalarm, container, false);
-    TimerFragment timerFragment = new TimerFragment();
+    TimerFragment timerFragment = new TimerFragment();// add the time fragment
 
-    sharedpreferences = getActivity().getSharedPreferences(selected, Context.MODE_PRIVATE);
+    sharedpreferences = getActivity().getSharedPreferences(selected, Context.MODE_PRIVATE); // create the sharedperferences
 
     nameET = view.findViewById(R.id.NameET);
     workPeriodET = view.findViewById(R.id.PeriodET);
@@ -51,23 +53,20 @@ public class TimerAddFragment extends Fragment {
 
                 InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 if(getActivity().getCurrentFocus()!= null){
-                    inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);}
+                    inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);}//hide the keyboard
 
 
-
-
-
-                String temp = sharedpreferences.getString(data , "");
-                String temp2 [] = temp.split(";");
+                String temp = sharedpreferences.getString(data , ""); //get the data from sharedpreferences
+                String temp2 [] = temp.split(";"); // split the data
                 String temp3 = "";
-                name = nameET.getText().toString();
+                name = nameET.getText().toString(); //get data
                 workPeriod = workPeriodET.getText().toString();
                 shortbreak = shortbreakET.getText().toString();
                 longbreak = longbreakET.getText().toString();
 
 
                 if(name.length() != 0 && workPeriod.length() != 0 && shortbreak.length() != 0 && longbreak.length() != 0 && !name.contains(";")  && !name.contains(",") ){
-
+                    //check the input whether valid
                     SharedPreferences.Editor editor = sharedpreferences.edit();
 
                     for (int i = 0 ; i < temp2.length ;i++){
@@ -105,6 +104,21 @@ public class TimerAddFragment extends Fragment {
             transaction.commit();
         }
     });
+
+        tv = view.findViewById(R.id.timeraddtv1);
+        intro = view.findViewById(R.id.btn_add_clock_instruction);
+        intro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tv.setText("Add the clock :\nStep1: Please fill in all data.\nStep2: Please Click the add button.");
+
+                if(tv.getVisibility() == View.GONE){
+                    tv.setVisibility(View.VISIBLE);
+                }else if(tv.getVisibility() == View.VISIBLE){
+                    tv.setVisibility(View.GONE);
+                }
+            }
+        });
 
         return  view;
 }

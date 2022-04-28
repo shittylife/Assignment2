@@ -30,7 +30,7 @@
     <string name="t2">Type:</string>
     <string name="t3">Price:</string>
     <string name="t4">Comment:</string>
-    <string name="t5">Instruction:\n1. First you click the current date to select the day.\n2. Next you can click the current date again to close the date picker.\n3. Then click the select button to confirm the date.\n4. After that you can use the spinner to select the type of your spending.\n5. Finally you can input the price and some detail in the two boxes below the spinner.\n6. And When you finish you can click the save button to save and back to the main page to view your input and history input.</string>
+    <string name="t5">1. First you click the current date to select the day.\n2. Next you can click the current date again to close the date picker.\n3. Then click the select button to confirm the date.\n4. After that you can use the spinner to select the type of your spending.\n5. Finally you can input the price and some detail in the two boxes below the spinner.\n6. And When you finish you can click the save button to save and back to the main page to view your input and history input.</string>
 
 
 

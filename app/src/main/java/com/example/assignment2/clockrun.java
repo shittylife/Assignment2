@@ -63,7 +63,6 @@ public class clockrun extends Fragment {
         TimerFragment timerFragment = new TimerFragment();
 
         tv1=view.findViewById(R.id.text_view_countdown);
-        tv2=view.findViewById(R.id.clockruntv2);
         tv3=view.findViewById(R.id.clockruntv3);
         mp3 = MediaPlayer.create(getActivity(),R.raw.clock);
         btn1=view.findViewById(R.id.button_start);
@@ -85,6 +84,7 @@ public class clockrun extends Fragment {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                tv3.setText("you are on 1 work period\nThen you can rest: "+(c/1000/60)+" minute");
 
                 cdt = new CountDownTimer(a,1000) {
 
@@ -103,7 +103,7 @@ public class clockrun extends Fragment {
                     public void onFinish() {
                         checker=false;
                         mp3.start();
-                        a1();
+                        a1(view);
                     }
 
                 };
@@ -139,7 +139,7 @@ public class clockrun extends Fragment {
         return view;
     }
 
-    public void a1(){
+    public void a1(View view){
         if(i<3){
             try {
                 cdt.wait(c);
@@ -149,10 +149,11 @@ public class clockrun extends Fragment {
             cdt.start();
             a5();
             i=i+1;
-            tv3.setText("you already done:"+i+"time\n now you can rest:"+(c/1000/60)+"minute");
+            tv3.setText("you are on "+(i)+" work period\nThen you can rest: "+(c/1000/60)+" minute");
+
         }else {
+            tv3.setText("now take a "+(b/1000/60)+"-minute break");
             a2();
-            tv2.setText("now take a "+(b/1000/60)+"-minute break");
         }
     }
     public void a2(){
@@ -167,7 +168,7 @@ public class clockrun extends Fragment {
             @Override
             public void onFinish() {
                 checker2=false;
-                tv2.setText("you finished a whole process!!");
+                tv3.setText("you finished a whole process!!");
             }
         };
         cdt2.start();

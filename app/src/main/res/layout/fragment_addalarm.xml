@@ -13,6 +13,23 @@
         android:textColor="#000000"
         android:textSize="20sp" />
 
+    <Button
+        android:id="@+id/btn_add_clock_instruction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Instruction" />
+
+    <TextView
+        android:id="@+id/timeraddtv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@color/black"
+        android:textColor="@color/grey"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,7 +81,6 @@
             android:layout_margin="5dp"
             android:layout_weight="9"
             android:ems="10"
-            android:hint="please enter the minute"
             android:inputType="number" />
 
     </LinearLayout>
@@ -92,7 +108,6 @@
             android:layout_margin="5dp"
             android:layout_weight="2"
             android:ems="10"
-            android:hint="please enter the minute"
             android:inputType="number" />
 
     </LinearLayout>
@@ -120,7 +135,6 @@
             android:layout_margin="5dp"
             android:layout_weight="9"
             android:ems="10"
-            android:hint="please enter the minute"
             android:inputType="number" />
 
     </LinearLayout>
@@ -129,12 +143,14 @@
         android:id="@+id/ADD_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:text="ADD" />
 
     <Button
         android:id="@+id/return_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:text="return" />
 
 </LinearLayout>

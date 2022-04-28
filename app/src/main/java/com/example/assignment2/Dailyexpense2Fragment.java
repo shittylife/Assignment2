@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 
 
@@ -30,7 +30,7 @@ public class Dailyexpense2Fragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private String mParam1;
-    String sppick;
+    String sppick ;
     private DatePickerDialog datePickerDialog;
     private Button dateButton,save,pick;
     private Spinner sp1;
@@ -68,7 +68,7 @@ public class Dailyexpense2Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_calendar2, container, false);
+        View view = inflater.inflate(R.layout.fragment_dailyexpense2, container, false);
         DailyexpenseFragment calendarFragment = new DailyexpenseFragment();
         initDatePicker();
         dateButton = view.findViewById(R.id.datePickerButton);
@@ -81,7 +81,6 @@ public class Dailyexpense2Fragment extends Fragment {
         et3 = view.findViewById(R.id.et3);
 
         datePicker = view.findViewById(R.id.DatePicker);
-        dateButton.setText(getTodaysDate());
         DatePicker picker = view.findViewById(R.id.DatePicker);
         int i;
 
@@ -94,8 +93,7 @@ public class Dailyexpense2Fragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 String choice = adapterView.getItemAtPosition(i).toString();
-                Toast.makeText(getActivity(),choice,Toast.LENGTH_SHORT).show();
-                sppick =  choice.toString();
+                sppick =  choice;
 
             }
 
@@ -105,41 +103,23 @@ public class Dailyexpense2Fragment extends Fragment {
             }
         });
 
-
-
-        save.setOnClickListener(new View.OnClickListener() {
+        int Year = picker.getYear();
+        int Month =picker.getMonth()+1;
+        int Day = picker.getDayOfMonth();
+        picker.init(Year,Month,Day, new DatePicker.OnDateChangedListener() {
             @Override
-            public void onClick(View view) {
-
-
-                if(tvtest == null && sp1 == null){
-                    Toast.makeText(getActivity(),"Please fill in the Date and Theme.",Toast.LENGTH_SHORT).show();
-                }else {
-                    SharedPreferences.Editor editor = sharedpreferences.edit();//edit
-                    String s1 = sharedpreferences.getString(Name , "");
-
-                    String gg = et3.getText().toString();
-                    String cc = detail.getText().toString();
-
-                if(s1.length() != 0) {
-                    s1 = s1 +";" +date;
-                    s1 = s1 + "," + sppick;
-                    s1 = s1 + "," + gg;
-                    s1 = s1 + "," + cc ;
-
-                }
-
-                    editor.putString(Name, s1);
-                    editor.commit();
-                    Toast.makeText(getActivity(), "Saved",Toast.LENGTH_SHORT).show();
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fragment,calendarFragment );
-                    transaction.commit();
-
-
-                }
+            public void onDateChanged(DatePicker datePicker, int year, int month, int day) {
+                StringBuilder builder = new StringBuilder();
+                builder.append(day+"/");
+                builder.append(month+1+"/");
+                builder.append(year);
+                date=builder.toString();
+                dateDay=String.valueOf(picker.getMonth()+1);
+                dateMonth=String.valueOf(picker.getDayOfMonth());
+                tvtest.setText(date);
             }
         });
+
 
         dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,6 +141,55 @@ public class Dailyexpense2Fragment extends Fragment {
             }
         });
 
+
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String price = et3.getText().toString();
+                String detail_text = detail.getText().toString();
+                String s1;
+
+
+                if(sppick == null || price.length() == 0 || detail_text.length() == 0 || date == null || detail_text.contains(";") || detail_text.contains("~")){
+                    Toast.makeText(getActivity(),"Please fill in the data and do not type ; or ~ in the comment.",Toast.LENGTH_SHORT).show();
+                }else{
+
+                     s1 = sharedpreferences.getString(Name , "");
+                    Log.e("sp1",s1);
+
+
+                    if(s1.length() != 0) {
+
+                        s1 = s1 +";" + date;
+                        s1 = s1 + "~" + sppick;
+                        s1 = s1 + "~" + price;
+                        s1 = s1 + "~" + detail_text ;
+
+                    }else{
+
+                        s1 = s1 + date;
+                        s1 = s1 + "~" + sppick;
+                        s1 = s1 + "~" + price;
+                        s1 = s1 + "~" + detail_text ;
+
+                    }
+
+                    SharedPreferences.Editor editor = sharedpreferences.edit();//edit
+                    editor.putString(Name, s1);
+                    editor.commit();
+                    Log.e("sp2",sharedpreferences.getString(Name , ""));
+                    Toast.makeText(getActivity(), "Saved",Toast.LENGTH_SHORT).show();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment,calendarFragment );
+                    transaction.commit();
+
+
+                }
+            }
+        });
+
+
         pick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -172,43 +201,10 @@ public class Dailyexpense2Fragment extends Fragment {
             }
         });
 
-        int Year = picker.getYear();
-        int Month =picker.getMonth()+1;
-        int Day = picker.getDayOfMonth();
-        picker.init(Year,Month,Day, new DatePicker.OnDateChangedListener() {
-            @Override
-            public void onDateChanged(DatePicker datePicker, int year, int month, int day) {
-                StringBuilder builder = new StringBuilder();
-                builder.append(day+"/");
-                builder.append(month+1+"/");
-                builder.append(year);
-                date=builder.toString();
-                dateDay=String.valueOf(picker.getMonth()+1);
-                dateMonth=String.valueOf(picker.getDayOfMonth());
-            }
-        });
-        tvtest.setText(date);
-
-
-
-
-
         return view;
     }
 
 
-
-
-
-    private String getTodaysDate()
-    {
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        month = month + 1;
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-        return makeDateString(day, month, year);
-    }
 
     private void initDatePicker()
     {
