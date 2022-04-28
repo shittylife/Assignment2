@@ -118,7 +118,7 @@ public class clockrun extends Fragment {
             tv3.setText("you already done:"+i+"time");
         }else {
             a2();
-            tv2.setText("now take a longer 15-minute break");
+            tv2.setText("now take a 15-minute break");
         }
     }
     public void a2(){

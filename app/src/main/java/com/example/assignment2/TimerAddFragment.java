@@ -19,7 +19,7 @@ public class TimerAddFragment extends Fragment {
     public static final String data = "data";
 
     EditText nameET, workPeriodET, shortbreakET,longbreakET;
-    Button add;
+    Button add,btn_return;
     String name,workPeriod , shortbreak , longbreak;
 
     @Override
@@ -65,7 +65,18 @@ public class TimerAddFragment extends Fragment {
         }
     });
 
-    return  view;
+    btn_return = view.findViewById(R.id.return_btn);
+
+    btn_return.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment, timerFragment);
+            transaction.commit();
+        }
+    });
+
+        return  view;
 }
 }
 
