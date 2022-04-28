@@ -29,8 +29,8 @@ public class TaskFragment extends Fragment implements DatePicker.OnDateChangedLi
     private DatePicker datePicker;
     private List<Task> data = new ArrayList<>();
     private TaskAdapter taskAdapter;
-    private Button addButton, todayButton;
-    private TextView tv1;
+    private Button addButton, todayButton, showButton;
+    private TextView tv1, tv2;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,7 @@ public class TaskFragment extends Fragment implements DatePicker.OnDateChangedLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_task, container, false);
         tv1 = view.findViewById(R.id.tv1);
+        tv2 = view.findViewById(R.id.tv2);
         datePicker = view.findViewById(R.id.datePicker);
         datePicker.setOnDateChangedListener(this);
         taskAdapter = new TaskAdapter(data);
@@ -76,6 +77,22 @@ public class TaskFragment extends Fragment implements DatePicker.OnDateChangedLi
             public void onClick(View view) {
                 Calendar c = Calendar.getInstance();
                 datePicker.updateDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+            }
+        });
+        showButton = view.findViewById(R.id.btnShow);
+        showButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (datePicker.getVisibility() == View.VISIBLE) {
+                    datePicker.setVisibility(View.GONE);
+                    showButton.setText("Show");
+                    tv2.setVisibility(View.VISIBLE);
+                } else {
+                    datePicker.setVisibility(View.VISIBLE);
+                    showButton.setText("Hide");
+                    tv2.setVisibility(View.GONE);
+                }
+                tv2.setText("Date selected: "+datePicker.getDayOfMonth()+"/"+datePicker.getMonth()+"/"+datePicker.getYear());
             }
         });
         return view;
