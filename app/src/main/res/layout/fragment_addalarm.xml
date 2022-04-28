@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Break time between each work:" />
+            android:text="Break time after work:" />
 
         <EditText
             android:id="@+id/shortBreakET"
@@ -108,5 +108,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ADD" />
+
+    <Button
+        android:id="@+id/return_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="return" />
 
 </LinearLayout>

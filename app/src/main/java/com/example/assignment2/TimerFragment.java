@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
@@ -24,40 +25,22 @@ public class TimerFragment extends Fragment {
     public static final String selected = "selected";
     public static final String data = "data";
 
-
+    TextView timertv1;
     ListView lv1;
-    Button btn_add , btn_addDefault;
+    Button btn_add , btn_addDefault,btn_clock_instruction;
     Integer selected_pos = -1;
-
-
-
-    /*
     DataPassListener mCallback;
-    public interface DataPassListener{
+    long a,b,c;
 
+    public  interface  DataPassListener{
+        public void pass1(String name, long time1,long time2,long time3);
     }
 
-
-
-
-
-
-    @Override
-    public void onAttach(Context context)
-    {
+    public  void  onAttach(Context context){
         super.onAttach(context);
-        // This makes sure that MainActivity has implemented the callback interface
-        // If not, it throws an exception
-        try
-        {
-            mCallback = (DataPassListener) context;
-        }
-        catch (ClassCastException e)
-        {
-            throw new ClassCastException(context.toString()+ " must implement DataPassListener");
+        mCallback =(DataPassListener) context;
+    }
 
-        }
-    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,6 +61,10 @@ public class TimerFragment extends Fragment {
         String[] s2;
 
         ArrayList<String> clockname = new ArrayList<>();
+        ArrayList<String> time1 = new ArrayList<>();
+        ArrayList<String> time2 = new ArrayList<>();
+        ArrayList<String> time3 = new ArrayList<>();
+
 
         Log.e("tag","1"+ s1);
         Log.e("tag","2"+ sharedpreferences.getString(data , ""));
@@ -88,12 +75,17 @@ public class TimerFragment extends Fragment {
             for (int i=0; i<s2.length ; i++){
                 String[] clockRecord = s2[i].split(",");
                 clockname.add(clockRecord[0]);
+                time1.add(clockRecord[1]);
+                time2.add(clockRecord[2]);
+                time3.add(clockRecord[3]);
+
             }
         }else{
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putString(data, "Tomato,25,5,15");
             editor.commit();
             clockname.add("Tomato");
+
         }
 
         clock_arraylist adapter = new clock_arraylist(getActivity(),clockname);
@@ -104,6 +96,14 @@ public class TimerFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selected = (String) parent.getItemAtPosition(position);
                 selected_pos = position;
+                clockname.get(position);
+                time1.get(position);
+                time2.get(position);
+                time3.get(position);
+                a = Long.valueOf(String.valueOf(time1));
+                b = Long.valueOf(String.valueOf(time2));
+                c = Long.valueOf(String.valueOf(time3));
+                mCallback.pass1(String.valueOf(clockname),a,b,c);
             }
 
         });
@@ -148,6 +148,20 @@ public class TimerFragment extends Fragment {
                     editor.commit();
                 }
                 adapter.notifyDataSetChanged();
+            }
+        });
+        timertv1 = view.findViewById(R.id.timertv1);
+        btn_clock_instruction = view.findViewById(R.id.btn_clock_instruction);
+        btn_clock_instruction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                timertv1.setText("step1: Pick a task\nstep2: work on your task until 25-minute left\n step3: Take a 5-minute break\n step4: Every 4 pomodoros,take a longer 15-minute break\n(ps: if you delete all the task and quit the app , it will create a default automatically");
+
+                if(timertv1.getVisibility() == View.GONE){
+                    timertv1.setVisibility(View.VISIBLE);
+                }else if(timertv1.getVisibility() == View.VISIBLE){
+                    timertv1.setVisibility(View.GONE);
+                }
             }
         });
         return view;
