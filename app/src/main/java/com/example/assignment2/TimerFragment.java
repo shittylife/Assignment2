@@ -71,7 +71,8 @@ public class TimerFragment extends Fragment {
 
         if(s1 != "") {
             if(s1.contains(";")){
-            s2 = s1.split(";");
+
+                s2 = s1.split(";");
 
                 for (int i=0; i<s2.length ; i++){
                 String[] clockRecord = s2[i].split(",");
@@ -80,6 +81,7 @@ public class TimerFragment extends Fragment {
                 time1.add(clockRecord[1]);
                 time2.add(clockRecord[2]);
                 time3.add(clockRecord[3]); }
+
             }else {
 
                     String[] clockRecord = s1.split(",");

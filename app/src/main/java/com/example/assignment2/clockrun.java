@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,11 +59,13 @@ public class clockrun extends Fragment {
 
 
         Bundle x = getArguments();
+        Log.d("x", String.valueOf(x));
         if (x != null) {
             if (x.getString("key").equalsIgnoreCase("FromTimerFragment")) {
-                    a = Long.valueOf(x.getString("time1"));
-                    b = Long.valueOf(x.getString("time2"));
-                    c = Long.valueOf(x.getString("time3"));
+                    a = x.getLong("time1");
+                    b = x.getLong("time2");
+                    c = x.getLong("time3");
+                Log.d("tag name a b c", a + " " + b + " " + c );
             }
         }
        tv1=view.findViewById(R.id.text_view_countdown);
