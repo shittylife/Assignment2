@@ -107,12 +107,14 @@ public class Calendar2Fragment extends Fragment {
         pick = view.findViewById(R.id.btn5);
         detail = view.findViewById(R.id.et1);
         et2 = view.findViewById(R.id.et2);
+        et3 = view.findViewById(R.id.et3);
+
         datePicker = view.findViewById(R.id.DatePicker);
         dateButton.setText(getTodaysDate());
         DatePicker picker = view.findViewById(R.id.DatePicker);
         int i;
 
-
+        CalendarFragment calendarFragment = new CalendarFragment();
         sharedpreferences = getActivity().getSharedPreferences("abc", Context.MODE_PRIVATE);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.Type, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -122,13 +124,8 @@ public class Calendar2Fragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 String choice = adapterView.getItemAtPosition(i).toString();
-                choice = sppick;
                 Toast.makeText(getActivity(),choice,Toast.LENGTH_SHORT).show();
-
-                //if(choice == "Custom"){
-                    et2.setVisibility(View.VISIBLE);
-
-               // }
+                sppick =  choice.toString();
 
             }
 
@@ -145,14 +142,14 @@ public class Calendar2Fragment extends Fragment {
             public void onClick(View view) {
 
 
-                if(tvtest == null && sp1== null){
+                if(tvtest == null && sp1 == null){
                     Toast.makeText(getActivity(),"Please fill in the Date and Theme.",Toast.LENGTH_SHORT).show();
                 }else {
                     SharedPreferences.Editor editor = sharedpreferences.edit();//edit
                     String s1 = sharedpreferences.getString(MYPreference , "");
 
-                    String gg = et3.getContext().toString();
-                    String cc = detail.getContext().toString();
+                    String gg = et3.getText().toString();
+                    String cc = detail.getText().toString();
 
                 if(s1 == null) {
                     s1 = s1 + date;
@@ -161,7 +158,7 @@ public class Calendar2Fragment extends Fragment {
                     s1 = s1 + "," + cc ;
 
                 }else{
-                    s1 = s1 +"/"+ date;
+                    s1 = s1 +";"+ date;
                     s1 = s1 + "," + sppick;
                     s1 = s1 + "," + gg;
                     s1 = s1 + "," + cc ;}
@@ -181,8 +178,17 @@ public class Calendar2Fragment extends Fragment {
         dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                datePicker.setVisibility(View.VISIBLE);
+
                 pick.setVisibility(View.VISIBLE);
+
+
+                if(datePicker.getVisibility()  == view.GONE){
+                    datePicker.setVisibility(View.VISIBLE);
+
+                }else if(datePicker.getVisibility() == View.VISIBLE){
+                    datePicker.setVisibility(View.GONE);
+
+                }
 
 
 
