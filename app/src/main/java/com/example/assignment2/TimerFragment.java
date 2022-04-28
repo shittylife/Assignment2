@@ -115,13 +115,9 @@ public class TimerFragment extends Fragment {
                 b = b *1000 * 60;
                 c = c *1000 * 60;
                 Log.d("tag name a b c",name + " " + a + " " + b + " " + c );
-                int i = position;
-               if(i ==position){
-                   mCallback.pass1(name,a,b,c);
-                   FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                   transaction.replace(R.id.fragment, clockrun);
-                   transaction.commit();
-               }
+                mCallback.pass1(name,a,b,c);
+
+
             }
 
         });

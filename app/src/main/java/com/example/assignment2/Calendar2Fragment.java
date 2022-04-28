@@ -114,7 +114,7 @@ public class Calendar2Fragment extends Fragment {
         DatePicker picker = view.findViewById(R.id.DatePicker);
         int i;
 
-        CalendarFragment calendarFragment = new CalendarFragment();
+
         sharedpreferences = getActivity().getSharedPreferences("abc", Context.MODE_PRIVATE);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.Type, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
