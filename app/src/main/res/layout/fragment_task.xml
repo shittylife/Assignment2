@@ -10,12 +10,22 @@
         android:layout_height="match_parent"
         android:layout_margin="8dp">
 
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"
+            android:visibility="gone"
+            android:layout_alignParentTop="true"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@id/datePicker"
-            android:paddingBottom="8dp"/>
+            android:paddingBottom="8dp"
+            android:layout_below="@id/tv2"/>
 
         <TextView
             android:id="@+id/tv1"
@@ -27,30 +37,42 @@
             android:gravity="center"
             android:visibility="gone"/>
 
+        <DatePicker
+            android:id="@+id/datePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@id/btnToday"/>
+
         <Button
             android:id="@+id/btnToday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Set Today"
+            android:text="Today"
+            android:layout_marginLeft="8dp"
             android:layout_marginBottom="8dp"
-            android:layout_above="@id/btnAdd"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
 
         <Button
             android:id="@+id/btnAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginBottom="8dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
             android:text="Add Tasks" />
 
-        <DatePicker
-            android:id="@+id/datePicker"
+        <Button
+            android:id="@+id/btnShow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/btnAdd"
-            android:layout_alignParentBottom="true" />
+            android:layout_above="@id/btnToday"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Hide" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
