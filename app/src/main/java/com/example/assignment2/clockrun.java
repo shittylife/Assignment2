@@ -26,8 +26,9 @@ public class clockrun extends Fragment {
     Button startTimer_btn,stopTimer_btn,return_btn;
     MediaPlayer mp3;
     CountDownTimer countDownTimer,countDownTimer2;
-    long a = 60000;
-    long b = 30000;
+    String name = "";
+    long a = 0;
+    long b = 0;
     long c = 0;
 
     public clockrun() {
@@ -57,25 +58,28 @@ public class clockrun extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_clockrun, container, false);
 
+        tv1=view.findViewById(R.id.text_view_countdown);
+        tv2=view.findViewById(R.id.clockruntv2);
+        tv3=view.findViewById(R.id.clockruntv3);
+        mp3 = MediaPlayer.create(getActivity(),R.raw.clock);
+        startTimer_btn = view.findViewById(R.id.button_start);
+        stopTimer_btn=view.findViewById(R.id.button_pause);
+        return_btn = view.findViewById(R.id.button_return);
+
 
         Bundle x = getArguments();
         Log.d("x", String.valueOf(x));
         if (x != null) {
             if (x.getString("key").equalsIgnoreCase("FromTimerFragment")) {
-                String name = x.getString("name");
+                    name =x.getString("name");
                     a = x.getLong("time1");
                     b = x.getLong("time2");
                     c = x.getLong("time3");
+                    tv3.setText(name);
                 Log.d("tag name a b c", name+" "+ a + " " + b + " " + c );
             }
         }
-       tv1=view.findViewById(R.id.text_view_countdown);
-        tv2=view.findViewById(R.id.clockruntv2);
-        tv3=view.findViewById(R.id.clockruntv3);
-        mp3 = MediaPlayer.create(getActivity(),R.raw.clock);
-       startTimer_btn = view.findViewById(R.id.button_start);
-       stopTimer_btn=view.findViewById(R.id.button_pause);
-       return_btn = view.findViewById(R.id.button_return);
+
        startTimer_btn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
