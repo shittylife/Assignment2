@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +26,9 @@ public class clockrun extends Fragment {
     Button startTimer_btn,stopTimer_btn,return_btn;
     MediaPlayer mp3;
     CountDownTimer countDownTimer,countDownTimer2;
+    String name = "";
     long a = 60000;
-    long b = 30000;
+    long b = 0;
     long c = 0;
 
     public clockrun() {
@@ -56,29 +58,35 @@ public class clockrun extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_clockrun, container, false);
 
-
-        Bundle x = getArguments();
-        if (x != null) {
-            if (x.getString("key").equalsIgnoreCase("FromTimerFragment")) {
-                    a = Long.valueOf(x.getString("time1"));
-                    b = Long.valueOf(x.getString("time2"));
-                    c = Long.valueOf(x.getString("time3"));
-            }
-        }
-       tv1=view.findViewById(R.id.text_view_countdown);
+        tv1=view.findViewById(R.id.text_view_countdown);
         tv2=view.findViewById(R.id.clockruntv2);
         tv3=view.findViewById(R.id.clockruntv3);
         mp3 = MediaPlayer.create(getActivity(),R.raw.clock);
-       startTimer_btn = view.findViewById(R.id.button_start);
-       stopTimer_btn=view.findViewById(R.id.button_pause);
-       return_btn = view.findViewById(R.id.button_return);
+        startTimer_btn = view.findViewById(R.id.button_start);
+        stopTimer_btn=view.findViewById(R.id.button_pause);
+        return_btn = view.findViewById(R.id.button_return);
+
+
+        Bundle x = getArguments();
+        Log.d("x", String.valueOf(x));
+        if (x != null) {
+            if (x.getString("key").equalsIgnoreCase("FromTimerFragment")) {
+                    name =x.getString("name");
+                    a = x.getLong("time1");
+                    b = x.getLong("time2");
+                    c = x.getLong("time3");
+                    tv3.setText("clock name: "+ name );
+                Log.d("tag name a b c", name+" "+ a + " " + b + " " + c );
+            }
+        }
+
        startTimer_btn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
           countDownTimer = new CountDownTimer(a,1000) {
               @Override
               public void onTick(long millisUntilFinished) {
-                 a= millisUntilFinished;
+                  a= millisUntilFinished;
                   stopTimer_btn.setVisibility(view.VISIBLE);
                   startTimer_btn.setVisibility(view.GONE);
                  a3();

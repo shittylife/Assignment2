@@ -30,7 +30,7 @@ public class TimerFragment extends Fragment {
     Button btn_add , btn_addDefault,btn_clock_instruction;
     Integer selected_pos = -1;
     DataPassListener mCallback;
-    long a,b,c;
+
 
     public  interface  DataPassListener{
         public void pass1(String name, long time1,long time2,long time3);
@@ -71,7 +71,8 @@ public class TimerFragment extends Fragment {
 
         if(s1 != "") {
             if(s1.contains(";")){
-            s2 = s1.split(";");
+
+                s2 = s1.split(";");
 
                 for (int i=0; i<s2.length ; i++){
                 String[] clockRecord = s2[i].split(",");
@@ -80,6 +81,7 @@ public class TimerFragment extends Fragment {
                 time1.add(clockRecord[1]);
                 time2.add(clockRecord[2]);
                 time3.add(clockRecord[3]); }
+
             }else {
 
                     String[] clockRecord = s1.split(",");
@@ -114,12 +116,8 @@ public class TimerFragment extends Fragment {
                 c = c *1000 * 60;
                 Log.d("tag name a b c",name + " " + a + " " + b + " " + c );
                 mCallback.pass1(name,a,b,c);
-                int i = position;
-               if(i ==position){
-                   FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                   transaction.replace(R.id.fragment, clockrun);
-                   transaction.commit();
-               }
+
+
             }
 
         });

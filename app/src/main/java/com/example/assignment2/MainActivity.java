@@ -2,6 +2,7 @@ package com.example.assignment2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -51,13 +52,18 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     public void pass1(String name, long time1,long time2,long time3){
 
-        Bundle bundle= new Bundle();
+        Bundle bundle = new Bundle();
         bundle.putString("key", "FromTimerFragment");
-        bundle.putString("name",name);
-        bundle.putString("time1", String.valueOf(time1));
-        bundle.putString("time2", String.valueOf(time2));
-        bundle.putString("time3", String.valueOf(time3));
+        bundle.putString("name", name);
+        bundle.putLong("time1", time1);
+        bundle.putLong("time2", time2);
+        bundle.putLong("time3", time3);
         clockrun.setArguments(bundle);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment, clockrun)
+                .commit();
+
     }
 
 
