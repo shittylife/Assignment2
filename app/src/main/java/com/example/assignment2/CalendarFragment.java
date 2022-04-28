@@ -34,6 +34,7 @@ public class CalendarFragment extends Fragment {
     TextView tv5,test11;
     ListView lv1;
     int u = 0;
+    String t;
     SharedPreferences sharedpreferences;
     String s0[],s1[] ,s2[],s3[] ,s4[];
 
@@ -49,7 +50,7 @@ public class CalendarFragment extends Fragment {
         Calendar2Fragment calendar2Fragment = new Calendar2Fragment();
         iv2 = view.findViewById(R.id.iv2);
         lv1 = view.findViewById(R.id.lv1);
-
+        tv5 = view.findViewById(R.id.tv5);
 
         sharedpreferences = getActivity().getSharedPreferences("abc", Context.MODE_PRIVATE);
        // SharedPreferences.Editor editor = sharedpreferences.edit();//edit
@@ -81,7 +82,7 @@ public class CalendarFragment extends Fragment {
                         arr2.add(d[2]);
                         arr3.add(d[3]);
                         u += Integer.valueOf(d[2]);
-                        update();
+
 
                     }
 
@@ -98,14 +99,13 @@ public class CalendarFragment extends Fragment {
                         arr2.add(d[2]);
                         arr3.add(d[3]);
                         u += Integer.valueOf(d[2]);
-                        update();
+
 
 
                 }
             }
 
             Calendarlist adapter = new Calendarlist(getActivity(), arr, arr1, arr2, arr3);
-
 
             lv1.setAdapter(adapter);
             lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -130,14 +130,14 @@ public class CalendarFragment extends Fragment {
             //count = money
             // tv5.setText();
 
+        t = String.valueOf(u);
+        Log.e("ko",t);
+        tv5.setText(t);
+
 
             return view;
         }
 
-    private void update() {
-        String t = String.valueOf(u);
-        tv5.setText(t);
 
-    }
 
 }
