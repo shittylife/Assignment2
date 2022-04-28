@@ -4,6 +4,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -30,6 +31,7 @@ public class clockrun extends Fragment {
     long a = 6000;
     long b = 3000;
     long c = 3000;
+    long d=0;
 
     public clockrun() {
         // Required empty public constructor
@@ -57,6 +59,7 @@ public class clockrun extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_clockrun, container, false);
+        TimerFragment timerFragment = new TimerFragment();
 
         tv1=view.findViewById(R.id.text_view_countdown);
         tv2=view.findViewById(R.id.clockruntv2);
@@ -87,16 +90,16 @@ public class clockrun extends Fragment {
 
                     @Override
                     public void onTick(long l) {
-
                         a= l;
-                        Log.d("yo", "fuck");
                         a3();
+                        btn2.setVisibility(view.VISIBLE);
+                        btn1.setVisibility(view.GONE);
+                        btn3.setVisibility(view.GONE);
 
                     }
 
                     @Override
                     public void onFinish() {
-                        Log.d("yo", "on 9");
                         mp3.start();
                         a1();
                     }
@@ -110,10 +113,22 @@ public class clockrun extends Fragment {
            @Override
            public void onClick(View view) {
                cdt.cancel();
-              cdt2.cancel();
+               cdt2.cancel();
                btn1.setVisibility(view.VISIBLE);
+               btn3.setVisibility(view.VISIBLE);
+               btn2.setVisibility(view.GONE);
            }
        });
+      btn3.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              a=d;
+              a3();
+              FragmentTransaction transaction = getFragmentManager().beginTransaction();
+              transaction.replace(R.id.fragment,timerFragment);
+              transaction.commit();
+          }
+      });
 
 
 
