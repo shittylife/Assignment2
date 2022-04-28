@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         ,TimerFragment.DataPassListener{
 
     private FrameLayout layout;
+    private BottomNavigationView navigationView;
     private final TaskFragment taskFragment = new TaskFragment();
     private final CalendarFragment calendarFragment = new CalendarFragment();
     private final TimerFragment timerFragment = new TimerFragment();
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         layout = findViewById(R.id.fragment);
-        BottomNavigationView navigationView = findViewById(R.id.navigationBar);
+        navigationView = findViewById(R.id.navigationBar);
         navigationView.setOnItemSelectedListener(this);
         getSupportFragmentManager().beginTransaction().replace(layout.getId(), taskFragment).commit();
     }
@@ -66,5 +67,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     }
 
+    @Override
+    public void onBackPressed() {
+        if (navigationView.getSelectedItemId() == R.id.task)
+            super.onBackPressed();
+        else
+            navigationView.setSelectedItemId(R.id.task);
+    }
 }
 
