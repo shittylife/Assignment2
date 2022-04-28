@@ -114,7 +114,6 @@ public class Calendar2Fragment extends Fragment {
         DatePicker picker = view.findViewById(R.id.DatePicker);
         int i;
 
-        CalendarFragment calendarFragment = new CalendarFragment();
         sharedpreferences = getActivity().getSharedPreferences("abc", Context.MODE_PRIVATE);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.Type, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
@@ -146,22 +145,22 @@ public class Calendar2Fragment extends Fragment {
                     Toast.makeText(getActivity(),"Please fill in the Date and Theme.",Toast.LENGTH_SHORT).show();
                 }else {
                     SharedPreferences.Editor editor = sharedpreferences.edit();//edit
-                    String s1 = sharedpreferences.getString(MYPreference , "");
+                    String s1 = sharedpreferences.getString(Name , "");
 
                     String gg = et3.getText().toString();
                     String cc = detail.getText().toString();
 
-                if(s1 == null) {
-                    s1 = s1 + date;
+                if(s1.length() != 0) {
+                    s1 = s1 +";" +date;
                     s1 = s1 + "," + sppick;
                     s1 = s1 + "," + gg;
                     s1 = s1 + "," + cc ;
 
-                }else{
+                }/*else{
                     s1 = s1 +";"+ date;
                     s1 = s1 + "," + sppick;
                     s1 = s1 + "," + gg;
-                    s1 = s1 + "," + cc ;}
+                    s1 = s1 + "," + cc ;}*/
 
                     editor.putString(Name, s1);
                     editor.commit();
