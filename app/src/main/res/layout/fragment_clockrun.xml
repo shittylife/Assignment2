@@ -55,14 +55,16 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_weight="1"
-                android:text="start" />
+                android:text="start"
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/button_pause"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Button"
+                android:text="pause"
+                android:textSize="20sp"
                 android:visibility="gone" />
 
             <Button
@@ -73,6 +75,7 @@
                 android:layout_toEndOf="@+id/button_start"
                 android:layout_weight="1"
                 android:text="close"
+                android:textSize="20sp"
                 android:visibility="visible"
                 tools:visibility="visible" />
         </LinearLayout>

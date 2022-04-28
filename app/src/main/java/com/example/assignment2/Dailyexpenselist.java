@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class Calendarlist extends ArrayAdapter<String> {
+public class Dailyexpenselist extends ArrayAdapter<String> {
 
     private final Activity context;
     private final ArrayList<String> D;
@@ -26,14 +26,11 @@ public class Calendarlist extends ArrayAdapter<String> {
     public static final String selected = "picked";
     public static final String data = "data";
 
-    public Calendarlist(Activity context,
-                               ArrayList<String> D,ArrayList<String> T,ArrayList<String> P,ArrayList<String> C)
+    public Dailyexpenselist(Activity context,
+                            ArrayList<String> D, ArrayList<String> T, ArrayList<String> P, ArrayList<String> C)
 
     {
         super(context, R.layout.calendarlist, D);
-        //inherit the information form super class
-
-        //define the attributes of your class
         this.context = context;
         this.D = D;
         this.T = T;

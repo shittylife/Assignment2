@@ -4,7 +4,6 @@ package com.example.assignment2;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,28 +14,21 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
-public class CalendarFragment extends Fragment {
+public class DailyexpenseFragment extends Fragment {
     Integer selected_pos = -1;
-    private List<Task> data = new ArrayList<>();
     ImageButton iv2;
-    TextView tv5,test11;
+    TextView tv5;
     ListView lv1;
     int u = 0;
     String t;
     SharedPreferences sharedpreferences;
-    String s0[],s1[] ,s2[],s3[] ,s4[];
+    String s0[];
 
 
     @Override
@@ -47,15 +39,13 @@ public class CalendarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
-        Calendar2Fragment calendar2Fragment = new Calendar2Fragment();
+        Dailyexpense2Fragment dailyexpense2Fragment = new Dailyexpense2Fragment();
         iv2 = view.findViewById(R.id.iv2);
         lv1 = view.findViewById(R.id.lv1);
         tv5 = view.findViewById(R.id.tv5);
 
         sharedpreferences = getActivity().getSharedPreferences("abc", Context.MODE_PRIVATE);
-       // SharedPreferences.Editor editor = sharedpreferences.edit();//edit
-        //editor.putString("nameKey", "123,ggg,123,ggg");
-        //editor.commit();
+
         String h = sharedpreferences.getString("nameKey", "");
         Log.e("h", h);
 
@@ -105,13 +95,12 @@ public class CalendarFragment extends Fragment {
                 }
             }
 
-            Calendarlist adapter = new Calendarlist(getActivity(), arr, arr1, arr2, arr3);
+            Dailyexpenselist adapter = new Dailyexpenselist(getActivity(), arr, arr1, arr2, arr3);
 
             lv1.setAdapter(adapter);
             lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    String selected = (String) parent.getItemAtPosition(position);
                     selected_pos = position;
                 }
 
@@ -122,13 +111,10 @@ public class CalendarFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fragment, calendar2Fragment);
+                    transaction.replace(R.id.fragment, dailyexpense2Fragment);
                     transaction.commit();
                 }
             });
-            // money = data;
-            //count = money
-            // tv5.setText();
 
         t = String.valueOf(u);
         Log.e("ko",t);

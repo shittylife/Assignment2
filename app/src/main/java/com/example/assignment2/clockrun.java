@@ -147,6 +147,7 @@ public class clockrun extends Fragment {
                 e.printStackTrace();
             }
             cdt.start();
+            a5();
             i=i+1;
             tv3.setText("you already done:"+i+"time\n now you can rest:"+(c/1000/60)+"minute");
         }else {
@@ -180,6 +181,12 @@ public class clockrun extends Fragment {
     private void a4(){
         int min =(int)(b/1000)/60;
         int sec =(int)(b/1000)%60;
+        String timeformatted = String.format(Locale.getDefault(),"%02d:%02d",min,sec);
+        tv1.setText(timeformatted);
+    }
+    private void a5(){
+        int min =(int)(c/1000)/60;
+        int sec =(int)(c/1000)%60;
         String timeformatted = String.format(Locale.getDefault(),"%02d:%02d",min,sec);
         tv1.setText(timeformatted);
     }

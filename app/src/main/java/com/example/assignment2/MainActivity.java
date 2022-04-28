@@ -2,10 +2,8 @@ package com.example.assignment2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -16,7 +14,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private FrameLayout layout;
     private final TaskFragment taskFragment = new TaskFragment();
-    private final CalendarFragment calendarFragment = new CalendarFragment();
+    private final DailyexpenseFragment calendarFragment = new DailyexpenseFragment();
     private final TimerFragment timerFragment = new TimerFragment();
     private final TimerAddFragment timerAddFragment = new TimerAddFragment();
     private final clockrun clockrun = new clockrun();
@@ -38,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 getSupportFragmentManager().beginTransaction().replace(layout.getId(), taskFragment).commit();
                 return true;
             }
-            case R.id.calendar: {
+            case R.id.Dailyexpense: {
                 getSupportFragmentManager().beginTransaction().replace(layout.getId(), calendarFragment).commit();
                 return true;
             }

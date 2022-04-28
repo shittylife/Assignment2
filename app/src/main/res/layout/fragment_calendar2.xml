@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg2"
-    tools:context=".Calendar2Fragment"
+    tools:context=".Dailyexpense2Fragment"
     android:orientation="vertical">
 
     <LinearLayout

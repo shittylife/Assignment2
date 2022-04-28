@@ -3,14 +3,12 @@ package com.example.assignment2;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,30 +21,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Calendar2Fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 
-public class Calendar2Fragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+public class Dailyexpense2Fragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
     private String mParam1;
-    private String a;
     String sppick;
     private DatePickerDialog datePickerDialog;
     private Button dateButton,save,pick;
@@ -55,29 +38,17 @@ public class Calendar2Fragment extends Fragment {
     private TextView tvtest;
     private DatePicker datePicker;
     private EditText detail,et2,et3;
-    ArrayList<String> data = new ArrayList<>();
     SharedPreferences sharedpreferences;
-    public static final String MYPreference = "MYPref";
     public static final String Name = "nameKey";
 
 
 
-    public Calendar2Fragment() {
+    public Dailyexpense2Fragment() {
         // Required empty public constructor
     }
+    public static Dailyexpense2Fragment newInstance(String param1, String param2) {
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Calendar2Fragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Calendar2Fragment newInstance(String param1, String param2) {
-
-        Calendar2Fragment fragment = new Calendar2Fragment();
+        Dailyexpense2Fragment fragment = new Dailyexpense2Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -98,7 +69,7 @@ public class Calendar2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calendar2, container, false);
-        CalendarFragment calendarFragment = new CalendarFragment();
+        DailyexpenseFragment calendarFragment = new DailyexpenseFragment();
         initDatePicker();
         dateButton = view.findViewById(R.id.datePickerButton);
         tvtest = view.findViewById(R.id.tvtest);
@@ -156,11 +127,7 @@ public class Calendar2Fragment extends Fragment {
                     s1 = s1 + "," + gg;
                     s1 = s1 + "," + cc ;
 
-                }/*else{
-                    s1 = s1 +";"+ date;
-                    s1 = s1 + "," + sppick;
-                    s1 = s1 + "," + gg;
-                    s1 = s1 + "," + cc ;}*/
+                }
 
                     editor.putString(Name, s1);
                     editor.commit();
@@ -264,7 +231,6 @@ public class Calendar2Fragment extends Fragment {
         int style = AlertDialog.THEME_HOLO_LIGHT;
 
         datePickerDialog = new DatePickerDialog(getActivity(), style, dateSetListener, year, month, day);
-        //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
 
     }
 
@@ -300,7 +266,6 @@ public class Calendar2Fragment extends Fragment {
         if(month == 12)
             return "DEC";
 
-        //default should never happen
         return "JAN";
     }
 

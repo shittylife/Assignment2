@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg2"
     android:orientation="vertical"
-    tools:context="CalendarFragment">
+    tools:context=".DailyexpenseFragment">
 
 
     <LinearLayout
@@ -122,7 +122,8 @@
         android:id="@+id/tvtest11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="@string/t5"
+        android:textColor="#000000" />
 
     <View
 

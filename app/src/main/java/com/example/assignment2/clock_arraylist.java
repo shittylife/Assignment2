@@ -29,9 +29,7 @@ public class clock_arraylist extends ArrayAdapter<String> {
                            ArrayList<String> season
     ) {
         super(context, R.layout.clock_listview, season);
-        //inherit the information form super class
 
-        //define the attributes of your class
         this.context = context;
         this.season = season;
     }
@@ -47,7 +45,7 @@ public class clock_arraylist extends ArrayAdapter<String> {
 
         tv_label.setText(season.get(position));
 
-        //button for del
+
         btn_del_item = rowView.findViewById(R.id.btn_del_item);
         btn_del_item.setOnClickListener(new View.OnClickListener() {
             @Override
