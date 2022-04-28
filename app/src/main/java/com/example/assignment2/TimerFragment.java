@@ -70,22 +70,30 @@ public class TimerFragment extends Fragment {
         Log.e("tag","2"+ sharedpreferences.getString(data , ""));
 
         if(s1 != "") {
+            if(s1.contains(";")){
             s2 = s1.split(";");
 
-            for (int i=0; i<s2.length ; i++){
+                for (int i=0; i<s2.length ; i++){
                 String[] clockRecord = s2[i].split(",");
+                Log.e("tag",String.valueOf(clockRecord.length));
                 clockname.add(clockRecord[0]);
                 time1.add(clockRecord[1]);
                 time2.add(clockRecord[2]);
-                time3.add(clockRecord[3]);
+                time3.add(clockRecord[3]); }
+            }else {
 
+                    String[] clockRecord = s1.split(",");
+                    Log.e("tag",String.valueOf(clockRecord.length));
+                    clockname.add(clockRecord[0]);
+                    time1.add(clockRecord[1]);
+                    time2.add(clockRecord[2]);
+                    time3.add(clockRecord[3]);
             }
-        }else{
+        } else{
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putString(data, "Tomato,25,5,15");
             editor.commit();
             clockname.add("Tomato");
-
         }
 
         clock_arraylist adapter = new clock_arraylist(getActivity(),clockname);
@@ -94,13 +102,17 @@ public class TimerFragment extends Fragment {
         lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selected = (String) parent.getItemAtPosition(position);
                 selected_pos = position;
+                Log.d("tag", String.valueOf(position));
                 String name = clockname.get(position);
                 long a , b  , c ;
                 a = Long.valueOf(time1.get(position));
                 b = Long.valueOf(time2.get(position));
                 c = Long.valueOf(time3.get(position));
+                a = a *1000 * 60;
+                b = b *1000 * 60;
+                c = c *1000 * 60;
+                Log.d("tag name a b c",name + " " + a + " " + b + " " + c );
                 mCallback.pass1(name,a,b,c);
                 int i = position;
                if(i ==position){
@@ -131,6 +143,9 @@ public class TimerFragment extends Fragment {
                 Log.e("tag","3 "+ sharedpreferences.getString(data , ""));
                 String temp = sharedpreferences.getString(data , "");
                 clockname.add("Tomato");
+                time1.add("25");
+                time2.add("5");
+                time3.add("15");
                 if(temp != ""){
                     String[] temp2 = temp.split(";");
                     String temp3 = "";
