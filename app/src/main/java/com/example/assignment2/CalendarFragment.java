@@ -36,7 +36,7 @@ public class CalendarFragment extends Fragment {
     public static final String MYPreference = "MYPref";
     SharedPreferences sharedpreferences;
     String s0[],s1[] ,s2[],s3[] ,s4[];
-    Calendar2Fragment calendar2Fragment = new Calendar2Fragment();
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class CalendarFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
+        Calendar2Fragment calendar2Fragment = new Calendar2Fragment();
         iv2 = view.findViewById(R.id.iv2);
         lv1 = view.findViewById(R.id.lv1);
 

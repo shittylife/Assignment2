@@ -60,7 +60,7 @@ public class Calendar2Fragment extends Fragment {
     public static final String MYPreference = "MYPref";
     public static final String Name = "nameKey";
 
-    CalendarFragment calendarFragment = new CalendarFragment();
+
 
     public Calendar2Fragment() {
         // Required empty public constructor
@@ -76,6 +76,7 @@ public class Calendar2Fragment extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     public static Calendar2Fragment newInstance(String param1, String param2) {
+
         Calendar2Fragment fragment = new Calendar2Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -97,6 +98,7 @@ public class Calendar2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_calendar2, container, false);
+        CalendarFragment calendarFragment = new CalendarFragment();
         initDatePicker();
         dateButton = view.findViewById(R.id.datePickerButton);
         tvtest = view.findViewById(R.id.tvtest);

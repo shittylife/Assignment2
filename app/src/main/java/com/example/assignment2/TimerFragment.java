@@ -52,11 +52,10 @@ public class TimerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_timer, container, false);
         TimerAddFragment timerAddFragment = new TimerAddFragment();
 
-        sharedpreferences = getActivity().getSharedPreferences(selected, Context.MODE_PRIVATE);
+        sharedpreferences = getContext().getSharedPreferences(selected, Context.MODE_PRIVATE);
 
 
         s1 = sharedpreferences.getString(data , "");
-
         lv1 = view.findViewById(R.id.lv1);
         String[] s2;
 
@@ -96,14 +95,12 @@ public class TimerFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selected = (String) parent.getItemAtPosition(position);
                 selected_pos = position;
-                clockname.get(position);
-                time1.get(position);
-                time2.get(position);
-                time3.get(position);
-                a = Long.valueOf(String.valueOf(time1));
-                b = Long.valueOf(String.valueOf(time2));
-                c = Long.valueOf(String.valueOf(time3));
-                mCallback.pass1(String.valueOf(clockname),a,b,c);
+                String name = clockname.get(position);
+                long a , b  , c ;
+                a = Long.valueOf(time1.get(position));
+                b = Long.valueOf(time2.get(position));
+                c = Long.valueOf(time3.get(position));
+                mCallback.pass1(name,a,b,c);
             }
 
         });
@@ -136,7 +133,7 @@ public class TimerFragment extends Fragment {
                         if (i==0) temp3 = temp3 + temp2[i];
                         if (i!=0) temp3 = temp3 +";" + temp2[i];}
 
-                        temp3 = temp3 + ";Tomato,25,5,15";
+                    temp3 = temp3 + ";Tomato,25,5,15";
                     editor.putString(data, temp3);
                     editor.commit();
 
