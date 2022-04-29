@@ -7,12 +7,19 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.CountDownTimer;
-import android.util.Log;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.TranslateAnimation;
+import android.os.Handler;
+
 
 import java.util.Locale;
 
@@ -34,7 +41,10 @@ public class clockrun extends Fragment {
     long d = 0;
     long e = 0;
     long g = 0;
+    ImageView iv_wm_times_up;
+    public static final int animation_time = 1000;
     boolean checker,checker2,checker3; // use for check which CountDownTimer is enable
+    public static int ScreenHeight, ScreenWidth;
 
     public clockrun() {
         // Required empty public constructor
@@ -76,6 +86,12 @@ public class clockrun extends Fragment {
         button_return1=view.findViewById(R.id.button_return);
         button_resume=view.findViewById(R.id.button_resume);
         button_return2 =view.findViewById(R.id.button_retrun2);
+
+        iv_wm_times_up = (ImageView) view.findViewById(R.id.timesup);
+        iv_wm_times_up.setVisibility(View.INVISIBLE);
+
+        check_display();
+
 
         Bundle x = getArguments();
         if (x != null) {
@@ -183,9 +199,17 @@ public class clockrun extends Fragment {
             }
 
             @Override
-            public void onFinish() { //when the work clock run less than 3 time
+            public void onFinish() {
+                AnimateSlideInOut(animation_time/2,
+                        iv_wm_times_up,true,animation_time/2,
+                        ScreenWidth);
+
+                AnimateSlideInOut(animation_time*2,
+                        iv_wm_times_up,false,animation_time/2,
+                        ScreenWidth);
+
                 checker=false;
-                if (i < 4){
+                if (i < 4){//when the work clock run less than 3 time
                     cdt.cancel();
                     mp3.start();
                     b=e;
@@ -214,6 +238,13 @@ public class clockrun extends Fragment {
 
             @Override
             public void onFinish() { // when the clock finish , it go back to work period.
+                AnimateSlideInOut(animation_time/2,
+                        iv_wm_times_up,true,animation_time/2,
+                        ScreenWidth);
+
+                AnimateSlideInOut(animation_time*2,
+                        iv_wm_times_up,false,animation_time/2,
+                        ScreenWidth);
                 i += 1;
                 cdt2.cancel();
                 checker2=false;
@@ -239,10 +270,17 @@ public class clockrun extends Fragment {
 
             @Override
             public void onFinish() {
+                AnimateSlideInOut(animation_time/2,
+                        iv_wm_times_up,true,animation_time/2,
+                        ScreenWidth);
+
+                AnimateSlideInOut(animation_time*2,
+                        iv_wm_times_up,false,animation_time/2,
+                        ScreenWidth);
                 checker3=false;
                 mp3.start();//play the alarm to tell the user work period is done
                 tv3.setText("you finished the whole process!!");
-                button_resume.setVisibility(view.VISIBLE);
+                button_resume.setVisibility(view.GONE);
                 button_return2.setVisibility(view.VISIBLE);
                 button_pause.setVisibility(view.GONE);
 
@@ -270,5 +308,54 @@ public class clockrun extends Fragment {
         String timeformatted = String.format(Locale.getDefault(),"%02d:%02d",min,sec);
         tv1.setText(timeformatted);
     }
+
+    // create the timeout animation function
+    public static void AnimateSlideInOut(final int delay, final ImageView imageView, final Boolean valid, final int Animationtime, final int num) {
+        if (delay == 0) {
+            if (valid) {
+                imageView.setVisibility(View.VISIBLE);
+            } else {
+                imageView.setVisibility(View.INVISIBLE);
+            }
+        } else {
+            Handler handler = new Handler(); // create a handler
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (valid) {
+                        imageView.setVisibility(View.VISIBLE);
+                        Animation transAnimation = new TranslateAnimation(
+                        Animation.ABSOLUTE+num, Animation.ABSOLUTE,
+                                Animation.ABSOLUTE, Animation.ABSOLUTE); //create a new transAnimation
+                        transAnimation.setDuration(Animationtime);
+                        AnimationSet animationSet1 = new AnimationSet(true);
+                        animationSet1.addAnimation(transAnimation);
+                        animationSet1.setInterpolator(new DecelerateInterpolator());
+                        imageView.startAnimation(animationSet1);
+                    } else {
+                        imageView.setVisibility(View.VISIBLE);
+                        Animation transAnimation = new TranslateAnimation(
+                                Animation.ABSOLUTE, Animation.ABSOLUTE + num,
+                                Animation.ABSOLUTE, Animation.ABSOLUTE);//create a new transAnimation
+                        transAnimation.setDuration(Animationtime);
+                        AnimationSet animationSet1 = new AnimationSet(true);//set the animation true
+                        animationSet1.addAnimation(transAnimation);
+                        animationSet1.setInterpolator(new DecelerateInterpolator());
+                        imageView.startAnimation(animationSet1);
+                        imageView.setVisibility(View.INVISIBLE);
+                    }
+
+                }
+            }, delay);
+        }
+    }
+
+    public void check_display() { //check the display size
+        DisplayMetrics dm = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
+        ScreenHeight = dm.heightPixels;
+        ScreenWidth = dm.widthPixels;
+    }
+
 
 }

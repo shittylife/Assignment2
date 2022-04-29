@@ -76,7 +76,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:orientation="horizontal">
 
             <Button
@@ -104,6 +105,12 @@
                 android:text="Return"
                 android:visibility="gone" />
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/timesup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/timesup" />
 
     </LinearLayout>
 

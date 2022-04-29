@@ -50,16 +50,9 @@ public class DailyexpenseFragment extends Fragment {
         ArrayList<String> arr2 = new ArrayList<String>();
         ArrayList<String> arr3 = new ArrayList<String>();
 
-
-
         sharedpreferences = getActivity().getSharedPreferences("abc", Context.MODE_PRIVATE);
 
-
-
         String h = sharedpreferences.getString("nameKey", "");
-
-        Log.e("h", h);
-
 
         if (h.length() != 0) {
                 if (h.contains(";")) {
