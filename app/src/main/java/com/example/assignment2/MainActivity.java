@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 return true;
             }
             case R.id.timer: {
-                getSupportFragmentManager().beginTransaction().replace(layout.getId(), timerFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment, timerFragment).commit();
                 return true;
             }
         }

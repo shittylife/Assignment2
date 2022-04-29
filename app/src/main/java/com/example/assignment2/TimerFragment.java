@@ -86,12 +86,15 @@ public class TimerFragment extends Fragment {
             editor.putString(data, "Tomato,25,5,15");
             editor.commit();
             clockname.add("Tomato");
+            time1.add("25");
+            time2.add("5");
+            time3.add("15");
         }
 
         clock_arraylist adapter = new clock_arraylist(getActivity(),clockname);
 
         lv.setAdapter(adapter);
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() { // click the listview item and go to the clock run fragment
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selected_pos = position;
@@ -100,9 +103,9 @@ public class TimerFragment extends Fragment {
                 a = Long.valueOf(time1.get(position));
                 b = Long.valueOf(time2.get(position));
                 c = Long.valueOf(time3.get(position));
-                a = a *1000 * 60;
-                b = b *1000 * 60;
-                c = c *1000 * 60;
+                a = a *1000 ;
+                b = b *1000 ;
+                c = c *1000 ;
                 mCallback.pass1(name,a,b,c);//transfer the data to clockrun fragment
 
 

@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -32,7 +33,7 @@ public class Dailyexpense2Fragment extends Fragment {
     private String mParam1;
     String sppick ;
     private DatePickerDialog datePickerDialog;
-    private Button dateButton,save,pick;
+    private Button dateButton,save,pick , return_btn;
     private Spinner sp1;
     private String date,dateDay,dateMonth;
     private TextView tvtest;
@@ -79,10 +80,10 @@ public class Dailyexpense2Fragment extends Fragment {
         detail = view.findViewById(R.id.et1);
         et2 = view.findViewById(R.id.et2);
         et3 = view.findViewById(R.id.et3);
+        return_btn = view.findViewById(R.id.DE_rtn_btn);
 
         datePicker = view.findViewById(R.id.DatePicker);
         DatePicker picker = view.findViewById(R.id.DatePicker);
-        int i;
 
         sharedpreferences = getActivity().getSharedPreferences("abc", Context.MODE_PRIVATE);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.Type, android.R.layout.simple_spinner_item);
@@ -91,6 +92,9 @@ public class Dailyexpense2Fragment extends Fragment {
         sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                if(getActivity().getCurrentFocus()!= null){
+                    inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);}//hide the keyboard
 
                 String choice = adapterView.getItemAtPosition(i).toString();
                 sppick =  choice;
@@ -124,6 +128,9 @@ public class Dailyexpense2Fragment extends Fragment {
         dateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                if(getActivity().getCurrentFocus()!= null){
+                    inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);}//hide the keyboard
 
                 pick.setVisibility(View.VISIBLE);
 
@@ -146,6 +153,9 @@ public class Dailyexpense2Fragment extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                if(getActivity().getCurrentFocus()!= null){
+                    inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);}//hide the keyboard
                 String price = et3.getText().toString();
                 String detail_text = detail.getText().toString();
                 String s1;
@@ -178,7 +188,6 @@ public class Dailyexpense2Fragment extends Fragment {
                     SharedPreferences.Editor editor = sharedpreferences.edit();//edit
                     editor.putString(Name, s1);
                     editor.commit();
-                    Log.e("sp2",sharedpreferences.getString(Name , ""));
                     Toast.makeText(getActivity(), "Saved",Toast.LENGTH_SHORT).show();
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
                     transaction.replace(R.id.fragment,calendarFragment );
@@ -193,6 +202,9 @@ public class Dailyexpense2Fragment extends Fragment {
         pick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                if(getActivity().getCurrentFocus()!= null){
+                    inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);}//hide the keyboard
                 datePicker.setVisibility(View.GONE);
                 pick.setVisibility(View.GONE);
                 sp1.setVisibility(View.VISIBLE);
