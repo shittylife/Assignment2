@@ -17,21 +17,20 @@ import java.util.ArrayList;
 public class clock_arraylist extends ArrayAdapter<String> {
 
     private final Activity context;
-    private final ArrayList<String> season;
+    private final ArrayList<String> name;
     private Button btn_del_item;
-    ArrayList<String> sptext;
     SharedPreferences sharedpreferences;
 
     public static final String selected = "selected";
     public static final String data = "data";
 
     public clock_arraylist(Activity context,
-                           ArrayList<String> season
+                           ArrayList<String> name
     ) {
-        super(context, R.layout.clock_listview, season);
+        super(context, R.layout.clock_listview, name);
 
         this.context = context;
-        this.season = season;
+        this.name = name;
     }
 
     public View getView(int position, View view, ViewGroup parent){
@@ -43,7 +42,7 @@ public class clock_arraylist extends ArrayAdapter<String> {
         TextView tv_label = rowView.findViewById(R.id.tv_label);
         ImageView iv_icon = rowView.findViewById(R.id.Iv_Icon);
 
-        tv_label.setText(season.get(position));
+        tv_label.setText(name.get(position));
 
 
         btn_del_item = rowView.findViewById(R.id.btn_del_item);
@@ -67,7 +66,7 @@ public class clock_arraylist extends ArrayAdapter<String> {
                     editor.commit();
 
 
-                season.remove(position);
+                name.remove(position);
                 clock_arraylist.this.notifyDataSetChanged();//update immediately
             }
         });

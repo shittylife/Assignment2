@@ -13,10 +13,26 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/clockrun_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="28sp" />
+
+        <TextView
             android:id="@+id/clockruntv3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#000000"
+            android:textSize="28sp" />
+
+        <TextView
+            android:id="@+id/clockruntv_period"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/purple_500"
             android:textSize="28sp" />
 
         <TextView
@@ -32,7 +48,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
@@ -45,15 +61,6 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/button_pause"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="pause"
-                android:textSize="20sp"
-                android:visibility="gone" />
-
-            <Button
                 android:id="@+id/button_return"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,6 +71,38 @@
                 android:textSize="20sp"
                 android:visibility="visible"
                 tools:visibility="visible" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_resume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Resume"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/button_pause"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="pause"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/button_retrun2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Return"
+                android:visibility="gone" />
         </LinearLayout>
 
     </LinearLayout>
