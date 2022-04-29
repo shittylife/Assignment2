@@ -2,6 +2,7 @@ package com.example.assignment2;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -158,10 +159,13 @@ public class TaskFragment extends Fragment implements DatePicker.OnDateChangedLi
     @Override
     public void onItemUpdate(int i) {
         if (tv1 != null)
-            if (i > 0)
+            if (i > 0) {
                 tv1.setVisibility(View.GONE);
-            else
+                iv1.setVisibility(View.GONE);
+            } else {
                 tv1.setVisibility(View.VISIBLE);
+                iv1.setVisibility(View.VISIBLE);
+            }
         String[] bg = {"1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg","10.jpg","11.jpg","12.jpg"};
         try {
             if (layout!=null&&getContext()!=null)
@@ -176,11 +180,13 @@ public class TaskFragment extends Fragment implements DatePicker.OnDateChangedLi
                 case 11: {
                     tv1.setTextColor(Color.WHITE);
                     tv2.setTextColor(Color.WHITE);
+                    iv1.setImageTintList(ColorStateList.valueOf(Color.WHITE));
                     break;
                 }
                 default:
                     tv1.setTextColor(Color.GRAY);
                     tv2.setTextColor(Color.GRAY);
+                    iv1.setImageTintList(ColorStateList.valueOf(Color.GRAY));
             }
         if (i==0&&!mute)
             playMusic();
