@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -119,7 +120,7 @@ public class TaskFragment extends Fragment implements DatePicker.OnDateChangedLi
         iv1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!mute) {
+                if (taskAdapter.getItemCount()>0||!mute) {
                     iv1.setImageDrawable(getContext().getDrawable(R.drawable.ic_baseline_volume_off_24));
                     pauseMusic();
                 } else {
@@ -236,20 +237,18 @@ public class TaskFragment extends Fragment implements DatePicker.OnDateChangedLi
     private void update() {
         JSONArray array = new JSONArray();
         for (int i = 0; i < data.size(); i++) {
-            if (!data.get(i).getTitle().isEmpty()&&!data.get(i).getText().isEmpty()) {
-                JSONObject object = new JSONObject();
-                try {
-                    object.put("id", data.get(i).getId());
-                    object.put("year", data.get(i).getYear());
-                    object.put("month", data.get(i).getMonth());
-                    object.put("day", data.get(i).getDay());
-                    object.put("title", data.get(i).getTitle());
-                    object.put("text", data.get(i).getText());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                array.put(object);
+            JSONObject object = new JSONObject();
+            try {
+                object.put("id", data.get(i).getId());
+                object.put("year", data.get(i).getYear());
+                object.put("month", data.get(i).getMonth());
+                object.put("day", data.get(i).getDay());
+                object.put("title", data.get(i).getTitle());
+                object.put("text", data.get(i).getText());
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+            array.put(object);
         }
         PreferenceManager.getDefaultSharedPreferences(getContext()).edit().putString("todolist", array.toString()).apply();
         Toast.makeText(getContext(), "Updated", Toast.LENGTH_SHORT).show();
