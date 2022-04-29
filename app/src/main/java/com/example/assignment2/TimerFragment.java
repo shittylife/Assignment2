@@ -103,9 +103,9 @@ public class TimerFragment extends Fragment {
                 a = Long.valueOf(time1.get(position));
                 b = Long.valueOf(time2.get(position));
                 c = Long.valueOf(time3.get(position));
-                a = a *1000 ;
-                b = b *1000 ;
-                c = c *1000 ;
+                a = a *1000 *60;
+                b = b *1000 *60;
+                c = c *1000 *60;
                 mCallback.pass1(name,a,b,c);//transfer the data to clockrun fragment
 
 
