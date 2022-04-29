@@ -111,7 +111,7 @@ public class TaskFragment extends Fragment implements DatePicker.OnDateChangedLi
             public void onClick(View view) {
                 new AlertDialog.Builder(getContext())
                         .setTitle("Instruction")
-                        .setMessage("Step 1: Choose your task date from the DatePicker or \"Today\" Button.\n\nStep 2: Click \"Add Task\" Button to add task.\n\nStep 3: Fill in your task title and task and save.\n\nStep 4: Click the delete icon when you have done your task.\n\nOptional 1: You can hide the DatePicker by clicking right bottom \"Show/Hide\" button.\n\nOptional 2: You can mute the BGM by clicking top right volume button.\n\nThe BGM will be played when task is free in that day.")
+                        .setMessage("Step 1: Choose your task date from the DatePicker or \"Today\" Button.\n\nStep 2: Click \"Add Task\" Button to add task.\n\nStep 3: Fill in your task title and task and save.\n\nStep 4: Click the delete icon when you have done your task.\n\nOptional 1: You can hide the DatePicker by clicking right bottom \"Show/Hide\" button.\n\nOptional 2: You can mute the BGM by clicking top right volume button.\n\nThe BGM will be played when no task is found at that day.")
                         .setNegativeButton(android.R.string.no, null)
                         .setIcon(android.R.drawable.ic_popup_reminder)
                         .show();
