@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="24dp">
+    android:id="@+id/layout">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,12 +11,21 @@
 
         <TextView
             android:id="@+id/tv2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:textSize="20sp"
-            android:visibility="gone"
-            android:layout_alignParentTop="true"/>
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@id/iv1"
+            android:padding="8dp"
+            android:textColor="@color/grey"/>
+        <ImageView
+            android:id="@+id/iv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="8dp"
+            android:src="@drawable/ic_baseline_volume_up_24"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -30,29 +38,31 @@
         <TextView
             android:id="@+id/tv1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/datePicker"
+            android:layout_height="wrap_content"
             android:text="No task"
             android:textSize="30sp"
             android:gravity="center"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:layout_below="@id/tv2"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/grey"/>
 
         <DatePicker
             android:id="@+id/datePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@id/btnToday"
             android:layout_centerHorizontal="true"
-            android:layout_above="@id/btnToday"/>
+            android:background="@color/white"/>
 
         <Button
             android:id="@+id/btnToday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Today"
-            android:layout_marginLeft="8dp"
+            android:layout_above="@id/btnInstruct"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="8dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"/>
+            android:text="Today" />
 
         <Button
             android:id="@+id/btnAdd"
@@ -64,15 +74,23 @@
             android:text="Add Tasks" />
 
         <Button
+            android:id="@+id/btnInstruct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="Instruction" />
+
+        <Button
             android:id="@+id/btnShow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/btnToday"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:text="Hide" />
 
     </RelativeLayout>
-</androidx.cardview.widget.CardView>
+</FrameLayout>
