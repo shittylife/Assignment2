@@ -81,6 +81,14 @@ public class Dailyexpense2Fragment extends Fragment {
         et2 = view.findViewById(R.id.et2);
         et3 = view.findViewById(R.id.et3);
         return_btn = view.findViewById(R.id.DE_rtn_btn);
+        return_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment, calendarFragment);
+                transaction.commit();
+            }
+        });
 
         datePicker = view.findViewById(R.id.DatePicker);
         DatePicker picker = view.findViewById(R.id.DatePicker);
