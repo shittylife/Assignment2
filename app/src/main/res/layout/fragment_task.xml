@@ -68,18 +68,18 @@
             android:id="@+id/btnAdd"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8dp"
             android:text="Add Tasks" />
 
         <Button
             android:id="@+id/btnInstruct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="8dp"
             android:text="Instruction" />
 
         <Button

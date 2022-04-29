@@ -34,17 +34,17 @@ public class TimerAddFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.fragment_addalarm, container, false);
-    TimerFragment timerFragment = new TimerFragment();// add the time fragment
+        View view = inflater.inflate(R.layout.fragment_addalarm, container, false);
+        TimerFragment timerFragment = new TimerFragment();// add the time fragment
 
-    sharedpreferences = getActivity().getSharedPreferences(selected, Context.MODE_PRIVATE); // create the sharedperferences
+        sharedpreferences = getActivity().getSharedPreferences(selected, Context.MODE_PRIVATE); // create the sharedperferences
 
-    nameET = view.findViewById(R.id.NameET);
-    workPeriodET = view.findViewById(R.id.PeriodET);
-    shortbreakET = view.findViewById(R.id.shortBreakET);
-    longbreakET = view.findViewById(R.id.longBreakET);
+        nameET = view.findViewById(R.id.NameET);
+        workPeriodET = view.findViewById(R.id.PeriodET);
+        shortbreakET = view.findViewById(R.id.shortBreakET);
+        longbreakET = view.findViewById(R.id.longBreakET);
 
-    add = view.findViewById(R.id.ADD_btn);
+        add = view.findViewById(R.id.ADD_btn);
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,16 +92,16 @@ public class TimerAddFragment extends Fragment {
             }
         });
 
-    btn_return = view.findViewById(R.id.return_btn);
+        btn_return = view.findViewById(R.id.return_btn);
 
-    btn_return.setOnClickListener(new View.OnClickListener() { //return to menu
-        @Override
-        public void onClick(View view) {
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment, timerFragment);
-            transaction.commit();
-        }
-    });
+        btn_return.setOnClickListener(new View.OnClickListener() { //return to menu
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment, timerFragment);
+                transaction.commit();
+            }
+        });
 
         tv = view.findViewById(R.id.timeraddtv1);
         intro = view.findViewById(R.id.btn_add_clock_instruction);//introduction
@@ -119,7 +119,7 @@ public class TimerAddFragment extends Fragment {
         });
 
         return  view;
-}
+    }
 }
 
 

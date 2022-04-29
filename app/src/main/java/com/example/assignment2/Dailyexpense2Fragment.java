@@ -165,7 +165,7 @@ public class Dailyexpense2Fragment extends Fragment {
                     Toast.makeText(getActivity(),"Please fill in the data and do not type ; or ~ in the comment.",Toast.LENGTH_SHORT).show();
                 }else{
 
-                     s1 = sharedpreferences.getString(Name , "");
+                    s1 = sharedpreferences.getString(Name , "");
                     Log.e("sp1",s1);
 
 
@@ -281,8 +281,6 @@ public class Dailyexpense2Fragment extends Fragment {
     {
         datePickerDialog.show();
     }
-
-
 
 
 }

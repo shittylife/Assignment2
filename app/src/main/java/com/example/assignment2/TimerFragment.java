@@ -67,19 +67,19 @@ public class TimerFragment extends Fragment {
                 s2 = s1.split(";");//split the data
 
                 for (int i=0; i<s2.length ; i++){//use a loop to  add the data to arraylist
-                String[] clockRecord = s2[i].split(",");
-                clockname.add(clockRecord[0]);
-                time1.add(clockRecord[1]);
-                time2.add(clockRecord[2]);
-                time3.add(clockRecord[3]); }
+                    String[] clockRecord = s2[i].split(",");
+                    clockname.add(clockRecord[0]);
+                    time1.add(clockRecord[1]);
+                    time2.add(clockRecord[2]);
+                    time3.add(clockRecord[3]); }
 
             }else {
 
-                    String[] clockRecord = s1.split(",");
-                    clockname.add(clockRecord[0]);//add the data to arraylist
-                    time1.add(clockRecord[1]);
-                    time2.add(clockRecord[2]);
-                    time3.add(clockRecord[3]);
+                String[] clockRecord = s1.split(",");
+                clockname.add(clockRecord[0]);//add the data to arraylist
+                time1.add(clockRecord[1]);
+                time2.add(clockRecord[2]);
+                time3.add(clockRecord[3]);
             }
         } else{//create a default clock
             SharedPreferences.Editor editor = sharedpreferences.edit();
@@ -173,3 +173,4 @@ public class TimerFragment extends Fragment {
         return view;
     }
 }
+

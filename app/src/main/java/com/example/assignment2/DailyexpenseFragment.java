@@ -4,7 +4,6 @@ package com.example.assignment2;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,66 +54,54 @@ public class DailyexpenseFragment extends Fragment {
         String h = sharedpreferences.getString("nameKey", "");
 
         if (h.length() != 0) {
-                if (h.contains(";")) {
+            if (h.contains(";")) {
 
-                    s0 = h.split(";");
-                    for (int i = 0; i < s0.length; i++) {
-                        String d[] = s0[i].split("~");
-
-                        Log.e("s0", s0[i]);
-                        Log.e("d0", d[0]);
-                        Log.e("d1", d[1]);
-                        Log.e("d2", d[2]);
-                        Log.e("d3", d[3]);
-                        arr.add(d[0]);
-                        arr1.add(d[1]);
-                        arr2.add(d[2]);
-                        arr3.add(d[3]);
-                        u += Integer.valueOf(d[2]);
-                    }
-
-
-                } else {
-
-                        String d[] = h.split("~");
-                        Log.e("s0", h);
-                         Log.e("d0", d[0]);
-                         Log.e("d1", d[1]);
-                         Log.e("d2", d[2]);
-                         Log.e("d3", d[3]);
-                        arr.add(d[0]);
-                        arr1.add(d[1]);
-                        arr2.add(d[2]);
-                        arr3.add(d[3]);
-                        u += Integer.valueOf(d[2]);
-
+                s0 = h.split(";");
+                for (int i = 0; i < s0.length; i++) {
+                    String d[] = s0[i].split("~");
+                    arr.add(d[0]);
+                    arr1.add(d[1]);
+                    arr2.add(d[2]);
+                    arr3.add(d[3]);
+                    u += Integer.valueOf(d[2]);
                 }
+
+
+            } else {
+
+                String d[] = h.split("~");
+                arr.add(d[0]);
+                arr1.add(d[1]);
+                arr2.add(d[2]);
+                arr3.add(d[3]);
+                u += Integer.valueOf(d[2]);
+
+            }
 
         }
         t = String.valueOf(u);
-                    Log.e("ko",t);
         tv5.setText(t);
 
 
-            Dailyexpenselist adapter = new Dailyexpenselist(getActivity(), arr, arr1, arr2, arr3);
-            lv.setAdapter(adapter);
-            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    selected_pos = position;
-                }
+        Dailyexpenselist adapter = new Dailyexpenselist(getActivity(), arr, arr1, arr2, arr3);
+        lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selected_pos = position;
+            }
 
-            });
-            adapter.notifyDataSetChanged();
+        });
+        adapter.notifyDataSetChanged();
 
-            iv2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fragment, dailyexpense2Fragment);
-                    transaction.commit();
-                }
-            });
+        iv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment, dailyexpense2Fragment);
+                transaction.commit();
+            }
+        });
 
         ins_tv = view.findViewById(R.id.tvtest11);
         ins_btn = view.findViewById(R.id.Instruction_dailyexpenses);
@@ -128,9 +115,7 @@ public class DailyexpenseFragment extends Fragment {
                 }
             }
         });
-            return view;
-        }
-
-
+        return view;
+    }
 
 }

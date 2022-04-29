@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".clockrun">
 
     <LinearLayout
@@ -49,6 +50,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:orientation="horizontal">
 
             <Button
@@ -56,6 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:text="start"
                 android:textSize="20sp" />
@@ -65,6 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/text_view_countdown"
+                android:layout_margin="5dp"
                 android:layout_toEndOf="@+id/button_start"
                 android:layout_weight="1"
                 android:text="close"
@@ -84,6 +88,7 @@
                 android:id="@+id/button_resume"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:text="Resume"
                 android:visibility="gone" />
@@ -92,6 +97,7 @@
                 android:id="@+id/button_pause"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:text="pause"
                 android:textSize="20sp"
@@ -101,6 +107,7 @@
                 android:id="@+id/button_retrun2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:text="Return"
                 android:visibility="gone" />

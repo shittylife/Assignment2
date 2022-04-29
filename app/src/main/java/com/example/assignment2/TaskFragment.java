@@ -2,7 +2,6 @@ package com.example.assignment2;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -112,7 +111,7 @@ public class TaskFragment extends Fragment implements DatePicker.OnDateChangedLi
             public void onClick(View view) {
                 new AlertDialog.Builder(getContext())
                         .setTitle("Instruction")
-                        .setMessage("Step 1: Choose your task date from the DatePicker or \"Today\" Button.\n\nStep 2: Click \"Add Task\" Button to add task.\n\nStep 3: Fill in your task title and task and save.\n\nStep 4: Click the delete icon when you have done your task.\n\nOptional 1: You can hide the DatePicker by clicking right bottom \"Show/Hide\" button.\n\nOptional 2: You can mute the BGM by clicking top right volume button.\n\nThe BGM will be played only when the task is totally free in the selected date.")
+                        .setMessage("Step 1: Choose your task date from the DatePicker or \"Today\" Button.\n\nStep 2: Click \"Add Task\" Button to add task.\n\nStep 3: Fill in your task title and task and save.\n\nStep 4: Click the delete icon when you have done your task.\n\nOptional 1: You can hide the DatePicker by clicking right bottom \"Show/Hide\" button.\n\nOptional 2: You can mute the BGM by clicking top right volume button.\n\nThe BGM will be played when task is free in that day.")
                         .setNegativeButton(android.R.string.no, null)
                         .setIcon(android.R.drawable.ic_popup_reminder)
                         .show();
@@ -159,13 +158,10 @@ public class TaskFragment extends Fragment implements DatePicker.OnDateChangedLi
     @Override
     public void onItemUpdate(int i) {
         if (tv1 != null)
-            if (i > 0) {
+            if (i > 0)
                 tv1.setVisibility(View.GONE);
-                iv1.setVisibility(View.GONE);
-            } else {
+            else
                 tv1.setVisibility(View.VISIBLE);
-                iv1.setVisibility(View.VISIBLE);
-            }
         String[] bg = {"1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg","10.jpg","11.jpg","12.jpg"};
         try {
             if (layout!=null&&getContext()!=null)
@@ -180,13 +176,11 @@ public class TaskFragment extends Fragment implements DatePicker.OnDateChangedLi
                 case 11: {
                     tv1.setTextColor(Color.WHITE);
                     tv2.setTextColor(Color.WHITE);
-                    iv1.setImageTintList(ColorStateList.valueOf(Color.WHITE));
                     break;
                 }
                 default:
                     tv1.setTextColor(Color.GRAY);
                     tv2.setTextColor(Color.GRAY);
-                    iv1.setImageTintList(ColorStateList.valueOf(Color.GRAY));
             }
         if (i==0&&!mute)
             playMusic();

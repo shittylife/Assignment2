@@ -217,7 +217,7 @@ public class clockrun extends Fragment {
                 else{
                     tv3.setText("This is a long break clock. you can rest "+(g/1000/60)+" minute");
                     longbreakclock(view);}
-                }
+            }
 
 
         };
@@ -325,7 +325,7 @@ public class clockrun extends Fragment {
                     if (valid) {
                         imageView.setVisibility(View.VISIBLE);
                         Animation transAnimation = new TranslateAnimation(
-                        Animation.ABSOLUTE+num, Animation.ABSOLUTE,
+                                Animation.ABSOLUTE+num, Animation.ABSOLUTE,
                                 Animation.ABSOLUTE, Animation.ABSOLUTE); //create a new transAnimation
                         transAnimation.setDuration(Animationtime);
                         AnimationSet animationSet1 = new AnimationSet(true);
