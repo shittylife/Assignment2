@@ -357,5 +357,22 @@ public class clockrun extends Fragment {
         ScreenWidth = dm.widthPixels;
     }
 
-
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (cdt!=null||cdt2!=null||cdt3!=null) {
+            if(checker==true){
+                cdt.cancel();
+            }
+            if(checker2==true){
+                cdt2.cancel();
+            }
+            if (checker3==true){
+                cdt3.cancel();
+            }
+            button_resume.setVisibility(View.VISIBLE);
+            button_return2.setVisibility(View.VISIBLE);
+            button_pause.setVisibility(View.GONE);
+        }
+    }
 }

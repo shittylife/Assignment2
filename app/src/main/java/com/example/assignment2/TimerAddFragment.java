@@ -85,7 +85,7 @@ public class TimerAddFragment extends Fragment {
                     transaction.commit();//change the fragment
 
                 }else{
-                    Toast.makeText(getContext(), "Please input valid information and do not left the column empty", Toast.LENGTH_SHORT).show();//warning the user
+                    Toast.makeText(getContext(), "Please input valid information and do not left the column empty.", Toast.LENGTH_SHORT).show();//warning the user
                 }
 
 

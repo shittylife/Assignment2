@@ -3,26 +3,27 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Assignment2-master (2)/Assignment2-master/app/src/main/res/layout/activity_main.xml" value="0.18704710144927536" />
-        <entry key="..\:/Assignment2-master (2)/Assignment2-master/app/src/main/res/layout/activity_task.xml" value="0.18704710144927536" />
-        <entry key="..\:/Assignment2-master (2)/Assignment2-master/app/src/main/res/layout/fragment_addalarm.xml" value="0.5541666666666667" />
-        <entry key="..\:/Assignment2-master (2)/Assignment2-master/app/src/main/res/layout/fragment_clockrun.xml" value="0.5541666666666667" />
-        <entry key="..\:/Assignment2-master (2)/Assignment2-master/app/src/main/res/layout/fragment_dailyexpense.xml" value="0.5541666666666667" />
-        <entry key="..\:/Assignment2-master (2)/Assignment2-master/app/src/main/res/layout/fragment_dailyexpense2.xml" value="0.5541666666666667" />
-        <entry key="..\:/Assignment2-master (2)/Assignment2-master/app/src/main/res/layout/fragment_task.xml" value="0.18704710144927536" />
-        <entry key="..\:/Assignment2-master (2)/Assignment2-master/app/src/main/res/layout/fragment_timer.xml" value="0.5541666666666667" />
         <entry key="..\:/Assignment2/app/src/main/res/layout/activity_main.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1815" />
+        <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/drawable/electron_framework.xml" value="0.1815" />
+        <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.1815" />
+        <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1815" />
+        <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1815" />
         <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/layout/activity_main.xml" value="0.371875" />
         <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/layout/activity_task.xml" value="0.371875" />
         <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/layout/calendarlist.xml" value="0.371875" />
+        <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/layout/clock_listview.xml" value="0.371875" />
         <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/layout/fragment_calendar.xml" value="0.371875" />
         <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/layout/fragment_calendar2.xml" value="0.3052586575459598" />
+        <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/layout/fragment_clockrun.xml" value="0.371875" />
         <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/layout/fragment_dailyexpense2.xml" value="0.3052586575459598" />
         <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/layout/fragment_task.xml" value="0.3052586575459598" />
         <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/layout/fragment_timer.xml" value="0.371875" />
         <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/layout/fragment_todo.xml" value="0.371875" />
         <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/layout/item_task.xml" value="0.371875" />
         <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/menu/item_nav.xml" value="0.371875" />
+        <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1815" />
+        <entry key="..\:/Users/Anonymous/AndroidStudioProjects/Assignment2/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1815" />
       </map>
     </option>
   </component>
